@@ -14,7 +14,10 @@ public class User{
         return id;
     }
     public void setid{
-        
+        this.id=id;
+    }
+    public String getemail{
+        this.email=email;
     }
 
 }
