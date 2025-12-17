@@ -13,50 +13,50 @@ public class Visitor{
     private LocalDateTime createdAt;
 
 }
-public getid()
+public Float getid()
 {
     return id;
 }
-public setid(Long id)
+public void setid(Long id)
 {
     this.id=id;
 }
-public getfullname()
+public String getfullname()
 {
     return fullname;
 }
-public setFname(String fullname)
+public void setFname(String fullname)
 {
     this.fullname=fullname;
 }
-public getemail(){
+public String getemail(){
     return email;
 }
-public setemail(String email)
+public void setemail(String email)
 {
     this.email=email;
 }
-public getphone()
+public String getphone()
 {
     return phone;
 }
-public setphone(String phone)
+public void setphone(String phone)
 {
     this.phone=phone;
 }
-public getidProof()
+public String getidProof()
 {
     return idProof;
 }
-public setidp(String idProof)
+public void setidp(String idProof)
 {
     this.idProof=idProof;
 }
-public getcreatedAt()
+public LocalDateTime getcreatedAt()
 {
     return createdAt;
 }
-public setcreatedAt(LocalDateTime createdAt)
+public void setcreatedAt(LocalDateTime createdAt)
 {
     this.createdAt=createdAt;
 }

@@ -29,34 +29,34 @@ public  void setFname(ManyToOne Visitor)
 {
     this.visitor=visitor;
 }
-public getentryTime(){
+public  LocalDateTime getentryTime(){
     return entryTime;
 }
-public setemail(LocalDateTime entryTime)
+public void setemail(LocalDateTime entryTime)
 {
     this.entryTime=entryTime;
 }
-public getexitTime()
+public LocalDateTime getexitTime()
 {
     return exitTime;
 }
-public setphone(LocalDateTime exitTime)
+public void setphone(LocalDateTime exitTime)
 {
     this.exitTime=exitTime;
 }
-public getpurpose()
+public String getpurpose()
 {
     return idpurpose;
 }
-public setidp(String purpose)
+public void setidp(String purpose)
 {
     this.idpurpose=idpurpose;
 }
-public getlocation()
+public String getlocation()
 {
     return location;
 }
-public setlocation(String location)
+public void setlocation(String location)
 {
     this.location=location;
 }
@@ -69,6 +69,9 @@ public void validateExit(){
     }
     @PreUpdate
     public void validateExit(){
-        if(exitTime !=null && exitTime.isBefore(entryTime)){}
+        if(exitTime !=null && exitTime.isBefore(entryTime)){
+            throw new
+            RuntimeException("exitTime must be after entryTime");
+        }
     }
 }
