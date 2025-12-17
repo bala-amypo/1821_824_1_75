@@ -39,4 +39,7 @@ public getphone(){
 public setphone(String phone){
     this.phone=phone;
 }
-public get
+public getidp(){
+    return idp;
+}
+public setid
