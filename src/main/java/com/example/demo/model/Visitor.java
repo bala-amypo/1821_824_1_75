@@ -6,18 +6,19 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
+import jakarta.persistence.Column;
 
 
 @Entity
 public class Visitor{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(unique=true)
     private Long id;
     private String fullname;
     private String email;
     private String phone;
     private String idProof;
-    @PrePersist
     private LocalDateTime createdAt;
 
 
