@@ -61,5 +61,10 @@ public setlocation(String location)
 }
 @PrePersist
 public void validateExit(){
-    entryTime=LocalDateTime
+    entryTime=LocalDateTime.now();
+    if(purpose ==null||location==null){
+        throw new 
+        RuntimeException("purpose and location required");
+    }
+    P
 }
