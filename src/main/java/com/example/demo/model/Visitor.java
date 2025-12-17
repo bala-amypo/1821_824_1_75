@@ -5,6 +5,7 @@ import.jakarta.persistence.PrePersist;
 @Entity
 public class Visitor{
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String fulllName;
     private String email;
