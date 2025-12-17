@@ -27,4 +27,16 @@ public getFname()
 public setFname(String Fname){
     this.Fname=Fname;
 }
+public getemail(){
+    return email;
+}
+public setemail(String email){
+    this.email=email;
+}
+public getphone(){
+    return phone;
+}
+public setphone(String phone){
+    this.phone=phone;
+}
 public get
