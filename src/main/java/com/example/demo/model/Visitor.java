@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -12,23 +13,23 @@ public class Visitor{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String fulllName;
+    private String fullname;
     private String email;
     private String phone;
     private String idProof;
     private LocalDateTime createdAt;
 
 
-public Long getid(){
+public Long getId(){
     return id;
 }
-public void setid(Long id){
+public void setId(Long id){
     this.id=id;
 }
 public String getfullname(){
     return fullname;
 }
-public void setFname(String fullname){
+public void setfullname(String fullname){
     this.fullname=fullname;
 }
 public String getemail(){

@@ -1,43 +1,43 @@
-package com.example.demo.model;
+// package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
+// import jakarta.persistence.column;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
 
-@Entity
-public class User{
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @column(unique=true)
-    private String email;
+// @Entity
+// public class User{
+//     @Id
+//     @GeneratedValue(strategy=GenerationType.IDENTITY)
+//     private Long id;
+//     @column(unique=true)
+//     private String email;
     
 
-    public Long getid(){
-        return id;
-    }
-    public void setid(Long id){
-        this.id=id;
-    }
-    public String getemail(){
-        return email;
-    }
-    public void setemail(String email){
-        this.email=email;
-    }
-    public String getpassword(){
-        return password;
-    }
-    public void getpassword(String password){
-        this.password=password;
-    }
-User()
-{}
-User(Long id,String email,String password){
-    this.id=id;
-    this.email=email;
+//     public Long getid(){
+//         return id;
+//     }
+//     public void setid(Long id){
+//         this.id=id;
+//     }
+//     public String getemail(){
+//         return email;
+//     }
+//     public void setemail(String email){
+//         this.email=email;
+//     }
+//     public String getpassword(){
+//         return password;
+//     }
+//     public void getpassword(String password){
+//         this.password=password;
+//     }
+// User()
+// {}
+// User(Long id,String email,String password){
+//     this.id=id;
+//     this.email=email;
 
-};
-}
+// };
+// }
