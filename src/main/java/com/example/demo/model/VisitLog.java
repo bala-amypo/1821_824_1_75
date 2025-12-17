@@ -20,13 +20,13 @@ public setid(Long id)
 {
     this.id=id;
 }
-public getFname()
+public getfullname()
 {
-    return Fname;
+    return fullname;
 }
-public setFname(String Fname)
+public setFname(String fullname)
 {
-    this.Fname=Fname;
+    this.fullname=fullname;
 }
 public getemail(){
     return email;
@@ -43,19 +43,19 @@ public setphone(String phone)
 {
     this.phone=phone;
 }
-public getidp()
+public getidProof()
 {
-    return idp;
+    return idProof;
 }
-public setidp(String idp)
+public setidp(String idProof)
 {
-    this.idp=idp;
+    this.idProof=idProof;
 }
-public getcat()
+public getcreatedAt()
 {
-    return cat;
+    return createdAt;
 }
-public setcat(LocalDateTime)
+public setcreatedAt(LocalDateTime)
 {
-    this.cat=cat;
+    this.createdAt=createdAt;
 }
