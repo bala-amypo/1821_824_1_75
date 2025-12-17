@@ -1,5 +1,6 @@
 import.jakarta.persistence.Entity;
 import.jakarta.persistence.Id;
+import.jakarta.persistence.PrePersist;
 
 @Entity
 public class Visitor{
@@ -12,19 +13,19 @@ public class Visitor{
     private String location;
 
 }
-public getid()
+public Float getid()
 {
     return id;
 }
-public setid(Long id)
+public void setid(Long id)
 {
     this.id=id;
 }
-public getvisitor()
+public ManyToOne getvisitor()
 {
     return visitor;
 }
-public setFname(ManyToOne Visitor)
+public  void setFname(ManyToOne Visitor)
 {
     this.visitor=visitor;
 }
@@ -66,5 +67,8 @@ public void validateExit(){
         throw new 
         RuntimeException("purpose and location required");
     }
-    P
+    @PreUpdate
+    public void validateExit(){
+        if(exitTime !=null && exitTime.isBefore(entryTime)){}
+    }
 }
