@@ -14,35 +14,36 @@ public class User{
     @Column(unique=true)
     private String email;
     private String role;
-    
-
-    public Long getid(){
+    public Long getId(){
         return id;
     }
-    public void setid(Long id){
+    public void setId(Long id){
         this.id=id;
     }
-    public String getemail(){
+    public String getEmail(){
         return email;
     }
-    public void setemail(String email){
+    public void setEmail(String email){
         this.email=email;
     }
-    public String getpassword(){
+    public String getPassword(){
         return password;
     }
-    public void getpassword(String password){
+    public void setPassword(String password){
         this.password=password;
     }
-    public String getRole(){
+    public String setRole(){
         return role;
     }
-    public void 
+    public void getRole(String role){
+        this.role=role;
+    }
 User()
 {}
-User(Long id,String email,String password){
+User(Long id,String email,String password,String role){
     this.id=id;
     this.email=email;
+    this.role=role;
 
 }
 }
