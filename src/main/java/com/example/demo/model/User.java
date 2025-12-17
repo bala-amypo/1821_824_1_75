@@ -22,7 +22,20 @@ public class User{
         this.id=id;
     }
     public String getemail{
+        return email;
+    }
+    public void setemail{
         this.email=email;
     }
+    public String setPassword{
+        return password;
+    }
+    public v
+User()
+{}
+User(Long id,String email,String password){
+    this.id=id;
+    this.email=email;
 
+}
 }

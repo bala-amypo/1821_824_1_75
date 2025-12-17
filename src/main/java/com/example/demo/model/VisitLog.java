@@ -68,5 +68,12 @@ public void setlocation(String location)
 }
 VisitLog()
 {}
-VisitLog(Long id,ManyToOne )
+VisitLog(Long id,ManyToOne Visitor,LocalDateTime entryTime,LocalDateTime exitTime,String purpose,String location){
+    this.id=id;
+    this.visitor=visitor;
+    this.entryTime=entryTime;
+    this.exitTime=exitTime;
+    this.idpurpose=idpurpose;
+    this.location=location;
+}
 }
