@@ -1,3 +1,5 @@
+package com.example.demo.Etity;
+
 import.jakarta.persistence.Entity;
 import.jakarta.persistence.Id;
 import.jakarta.persistence.PrePersist;
@@ -61,6 +63,10 @@ public void setcreatedAt(LocalDateTime createdAt)
 {
     this.createdAt=createdAt;
 }
+Visitor()
+{}
+
+Visitor(Long id,String fullname,Str)
 @PrePersist
 public void PrePersist(){
     if(phone==null || phone.isEmpty()){
