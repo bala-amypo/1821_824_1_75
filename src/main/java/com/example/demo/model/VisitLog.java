@@ -1,6 +1,11 @@
-import.jakarta.persistence.Entity;
-import.jakarta.persistence.Id;
-import.jakarta.persistence.PrePersist;
+
+package com.example.demo.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 
 @Entity
 public class Visitor{
@@ -60,20 +65,5 @@ public String getlocation()
 public void setlocation(String location)
 {
     this.location=location;
-}
-@PrePersist
-public void validateExit(){
-    entryTime=LocalDateTime.now();
-    if(purpose ==null||location==null){
-        throw new 
-        RuntimeException("purpose and location required");
-    }
-    @PreUpdate
-    public void validateExit(){
-        if(exitTime !=null && exitTime.isBefore(entryTime)){
-            throw new
-            RuntimeException("exitTime must be after entryTime");
-        }
-    }
 }
 }
