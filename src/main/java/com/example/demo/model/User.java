@@ -1,9 +1,20 @@
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.column;
 
 @Entity
 public class User{
     @Id
     private Long id;
-    private String 
+    @column(unique=true)
+    private String email;
+    
+
+    public Long getid{
+        return id;
+    }
+    public void setid{
+        
+    }
 
 }
