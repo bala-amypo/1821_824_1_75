@@ -50,13 +50,13 @@ public String getlocation(){
 public void setlocation(String location){
     this.location=location;
 }
-public VisitLog()
+ VisitLog()
 {}
-public VisitLog(Long id,LocalDateTime entryTime,LocalDateTime exitTime,String purpose,String location){
+ VisitLog(Long id,LocalDateTime entryTime,LocalDateTime exitTime,String purpose,String location){
     this.id=id;
     this.entryTime=entryTime;
     this.exitTime=exitTime;
     this.idpurpose=idpurpose;
     this.location=location;
-};
+}
 }
