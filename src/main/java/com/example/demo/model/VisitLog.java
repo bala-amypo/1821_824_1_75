@@ -49,13 +49,13 @@ public getpurpose()
 }
 public setidp(String purpose)
 {
-    this.idpurpose=idProof;
+    this.idpurpose=idpurpose;
 }
-public getcreatedAt()
+public getlocation()
 {
-    return createdAt;
+    return location;
 }
-public setcreatedAt(LocalDateTime)
+public setlocation(String location)
 {
-    this.createdAt=createdAt;
+    this.location=location;
 }
