@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.column;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -38,12 +38,13 @@ public class User{
     public void getRole(String role){
         this.role=role;
     }
-User()
-{}
-User(Long id,String email,String password,String role){
+
+public User(Long id,String email,String password,String role){
     this.id=id;
     this.email=email;
+    this.password=password;
     this.role=role;
 
 }
+public User(){}
 }
