@@ -13,6 +13,7 @@ public class User{
     private Long id;
     @Column(unique=true)
     private String email;
+    private String password;
     private String role;
     public Long getId(){
         return id;
