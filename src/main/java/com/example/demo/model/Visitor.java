@@ -1,4 +1,4 @@
-package com.example.demo.Etity;
+package com.example.demo.model;
 
 import.jakarta.persistence.Entity;
 import.jakarta.persistence.Id;
@@ -66,7 +66,14 @@ public void setcreatedAt(LocalDateTime createdAt)
 Visitor()
 {}
 
-Visitor(Long id,String fullname,Str)
+Visitor(Long id,String fullname,String email,String phone,String idProof,LocalDateTime createAt){
+    this.id=id;
+    this.fullname=fullname;
+    this.email=email;
+    this.phone=phone;
+    this.idProof=idProof;
+    this.createdAt=createdAt;
+}
 @PrePersist
 public void PrePersist(){
     if(phone==null || phone.isEmpty()){
