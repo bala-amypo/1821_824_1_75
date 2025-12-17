@@ -1,5 +1,5 @@
-
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
@@ -66,4 +66,7 @@ public void setlocation(String location)
 {
     this.location=location;
 }
+VisitLog()
+{}
+VisitLog(Long id,ManyToOne )
 }

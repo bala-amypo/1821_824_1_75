@@ -77,11 +77,5 @@ Visitor(Long id,String fullname,String email,String phone,String idProof,LocalDa
     this.idProof=idProof;
     this.createdAt=createdAt;
 }
-@PrePersist
-public void PrePersist(){
-    if(phone==null || phone.isEmpty()){
-        throw new RuntimeException("phone required");
-    }
-    createdAt=LocalDateTime.now();
-}
+
 }
