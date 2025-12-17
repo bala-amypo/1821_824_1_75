@@ -59,3 +59,7 @@ public setlocation(String location)
 {
     this.location=location;
 }
+@PrePersist
+public void validateExit(){
+    entryTime=LocalDateTime
+}
