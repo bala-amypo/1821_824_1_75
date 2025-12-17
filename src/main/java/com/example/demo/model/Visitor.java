@@ -12,4 +12,19 @@ public class Visitor{
     private LocalDateTime createdAt;
 
 }
-public
+public getid()
+{
+    return id;
+}
+public setid(Long id)
+{
+    this.id=id;
+}
+public getFname()
+{
+    return Fname;
+}
+public setFname(String Fname){
+    this.Fname=Fname;
+}
+public get
