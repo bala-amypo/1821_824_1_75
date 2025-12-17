@@ -17,6 +17,7 @@ public class Visitor{
     private String email;
     private String phone;
     private String idProof;
+    @PrePersist
     private LocalDateTime createdAt;
 
 
@@ -26,38 +27,37 @@ public Long getId(){
 public void setId(Long id){
     this.id=id;
 }
-public String getfullname(){
+public String getFullname(){
     return fullname;
 }
-public void setfullname(String fullname){
+public void setFullname(String fullname){
     this.fullname=fullname;
 }
-public String getemail(){
+public String getEmail(){
     return email;
 }
-public void setemail(String email){
+public void setEmail(String email){
     this.email=email;
 }
-public String getphone(){
+public String getPhone(){
     return phone;
 }
-public void setphone(String phone){
+public void setPhone(String phone){
     this.phone=phone;
 }
-public String getidProof(){
+public String getIdProof(){
     return idProof;
 }
-public void setidp(String idProof){
+public void setIdProof(String idProof){
     this.idProof=idProof;
 }
-public LocalDateTime getcreatedAt(){
+public LocalDateTime getCreatedAt(){
     return createdAt;
 }
-public void setcreatedAt(LocalDateTime createdAt){
+public void setCreatedAt(LocalDateTime createdAt){
     this.createdAt=createdAt;
 }
-Visitor()
-{}
+
 
 Visitor(Long id,String fullname,String email,String phone,String idProof,LocalDateTime createAt){
     this.id=id;
@@ -66,6 +66,8 @@ Visitor(Long id,String fullname,String email,String phone,String idProof,LocalDa
     this.phone=phone;
     this.idProof=idProof;
     this.createdAt=createdAt;
-};
+}
+Visitor()
+{}
 
 }
