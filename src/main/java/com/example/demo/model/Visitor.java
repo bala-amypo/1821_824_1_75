@@ -24,22 +24,38 @@ public getFname()
 {
     return Fname;
 }
-public setFname(String Fname){
+public setFname(String Fname)
+{
     this.Fname=Fname;
 }
 public getemail(){
     return email;
 }
-public setemail(String email){
+public setemail(String email)
+{
     this.email=email;
 }
-public getphone(){
+public getphone()
+{
     return phone;
 }
-public setphone(String phone){
+public setphone(String phone)
+{
     this.phone=phone;
 }
-public getidp(){
+public getidp()
+{
     return idp;
 }
-public setid
+public setidp(String idp)
+{
+    this.idp=idp;
+}
+public getcat()
+{
+    return cat;
+}
+public setcat(LocalDateTime)
+{
+    this.cat=cat;
+}
