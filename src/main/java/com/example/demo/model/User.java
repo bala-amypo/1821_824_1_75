@@ -15,27 +15,29 @@ public class User{
     private String email;
     
 
-    public Long getid{
+    public Long getid(){
         return id;
     }
-    public void setid{
+    public void setid(Long id){
         this.id=id;
     }
-    public String getemail{
+    public String getemail(){
         return email;
     }
-    public void setemail{
+    public void setemail(String email){
         this.email=email;
     }
-    public String setPassword{
+    public String getpassword(){
         return password;
     }
-    public v
+    public void getpassword(String password){
+        this.password=password;
+    }
 User()
 {}
 User(Long id,String email,String password){
     this.id=id;
     this.email=email;
 
-}
+};
 }
