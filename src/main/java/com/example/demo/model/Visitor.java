@@ -60,4 +60,9 @@ public setcreatedAt(LocalDateTime)
     this.createdAt=createdAt;
 }
 @PrePersist
-public void PrePersist
+public void PrePersist(){
+    if(phone==null || phone.isEmpty()){
+        throw new RuntimeException("phone required");
+    }
+    createdAt=LocalDateTime.now();
+}

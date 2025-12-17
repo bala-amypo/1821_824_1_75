@@ -5,8 +5,8 @@ import.jakarta.persistence.Id;
 public class Visitor{
     @Id
     private Long id;
-    private String fulllName;
-    private String email;
+    private ManyToOne Visitor visitor;
+    private LocalDateTime entryTime;
     private String phone;
     private String idProof;
     private LocalDateTime createdAt;
