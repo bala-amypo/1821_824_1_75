@@ -12,8 +12,8 @@ public class Visitor{
     private String idProof;
     private LocalDateTime createdAt;
 
-}
-public Float getid()
+
+public Long getid()
 {
     return id;
 }
@@ -66,4 +66,5 @@ public void PrePersist(){
         throw new RuntimeException("phone required");
     }
     createdAt=LocalDateTime.now();
+}
 }

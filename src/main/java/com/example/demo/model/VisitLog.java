@@ -12,8 +12,8 @@ public class Visitor{
     private String purpose;
     private String location;
 
-}
-public Float getid()
+
+public Long getid()
 {
     return id;
 }
@@ -74,4 +74,5 @@ public void validateExit(){
             RuntimeException("exitTime must be after entryTime");
         }
     }
+}
 }
