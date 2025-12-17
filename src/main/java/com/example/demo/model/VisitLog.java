@@ -7,9 +7,9 @@ public class Visitor{
     private Long id;
     private ManyToOne Visitor visitor;
     private LocalDateTime entryTime;
-    private String phone;
-    private String idProof;
-    private LocalDateTime createdAt;
+    private LocalDateTime exitTime;
+    private String purpose;
+    private String location;
 
 }
 public getid()
@@ -20,36 +20,36 @@ public setid(Long id)
 {
     this.id=id;
 }
-public getfullname()
+public getvisitor()
 {
-    return fullname;
+    return visitor;
 }
-public setFname(String fullname)
+public setFname(ManyToOne Visitor)
 {
-    this.fullname=fullname;
+    this.visitor=visitor;
 }
-public getemail(){
-    return email;
+public getentryTime(){
+    return entryTime;
 }
-public setemail(String email)
+public setemail(LocalDateTime entryTime)
 {
-    this.email=email;
+    this.entryTime=entryTime;
 }
-public getphone()
+public getexitTime()
 {
-    return phone;
+    return exitTime;
 }
-public setphone(String phone)
+public setphone(LocalDateTime exitTime)
 {
-    this.phone=phone;
+    this.exitTime=exitTime;
 }
-public getidProof()
+public getpurpose()
 {
-    return idProof;
+    return idpurpose;
 }
-public setidp(String idProof)
+public setidp(String purpose)
 {
-    this.idProof=idProof;
+    this.idpurpose=idProof;
 }
 public getcreatedAt()
 {
