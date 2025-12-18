@@ -7,4 +7,16 @@ import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-public cls
+public class RiskRule{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private String ruleName;
+    private Integer threshold;
+    private Integer scoreImpact;
+    private LocaDateTime;
+    public enum RuleType{
+        A
+
+    }
+}
