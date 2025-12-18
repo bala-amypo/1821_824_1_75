@@ -1,74 +1,50 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import java.time.LocalDateTime;
-import jakarta.persistence.Column;
-
+import jakarta.persistence.Id;
 
 @Entity
-public class Visitor{
+public class Visitor {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(unique=true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String fullname;
+
+    private String name;
     private String email;
-    private String phone;
-    private String idProof;
-    private LocalDateTime createdAt;
 
+    // Constructors
+    public Visitor() {}
 
-public Long getId(){
-    return id;
-}
-public void setId(Long id){
-    this.id=id;
-}
-public String getFullname(){
-    return fullname;
-}
-public void setFullname(String fullname){
-    this.fullname=fullname;
-}
-public String getEmail(){
-    return email;
-}
-public void setEmail(String email){
-    this.email=email;
-}
-public String getPhone(){
-    return phone;
-}
-public void setPhone(String phone){
-    this.phone=phone;
-}
-public String getIdProof(){
-    return idProof;
-}
-public void setIdProof(String idProof){
-    this.idProof=idProof;
-}
-public LocalDateTime getCreatedAt(){
-    return createdAt;
-}
-public void setCreatedAt(LocalDateTime createdAt){
-    this.createdAt=createdAt;
-}
+    public Visitor(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
+    // Getters & Setters
+    public Long getId() {
+        return id;
+    }
 
-Visitor(Long id,String fullname,String email,String phone,String idProof,LocalDateTime createAt){
-    this.id=id;
-    this.fullname=fullname;
-    this.email=email;
-    this.phone=phone;
-    this.idProof=idProof;
-    this.createdAt=createdAt;
-}
-Visitor()
-{}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
