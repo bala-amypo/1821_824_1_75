@@ -28,5 +28,10 @@ public class RiskRule{
     public void setId(Long id){
         this.id=id;
     }
-    public String getRule
+    public String getRuleName(){
+        return rulename;
+    }
+    public void setRuleName(String ruleName){
+        this.ruleName=ruleName
+    }
 }
