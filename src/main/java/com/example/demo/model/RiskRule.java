@@ -16,7 +16,9 @@ public class RiskRule{
     private Integer scoreImpact;
     private LocaDateTime;
     public enum RuleType{
-        A
+        AFTER_HOURS
+        FREQUENT_VISITS
+        
 
     }
 }
