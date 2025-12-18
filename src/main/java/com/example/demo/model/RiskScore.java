@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
-import jakrata.persistence.GenerationType;
+import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,7 +11,7 @@ public class RiskScore{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private Integer toatalScore;
+    private Integer totalScore;
     public enum riskLevel{
         LOW,
         MEDIUM,
@@ -38,10 +38,10 @@ public class RiskScore{
         this.evaluatedAt=evaluatedAt;
     }
     public RiskLevel getRiskLevel(){
-        return risklevel;
+        return riskLevel;
     }
     public void setRiskLevel(RiskLevel riskLevel){
-        this.riskLevel=risklevel;
+        this.riskLevel=riskLevel;
     }
     public RiskScore(Long id,Integer totalScore,LocalDateTime evaluatedAt,RiskLevel riskLevel){
         this.id=id;
