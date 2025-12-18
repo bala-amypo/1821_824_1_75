@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public class Visitor{
+public class VisitLog{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +31,7 @@ public void setEntryTime(LocalDateTime entryTime){
     this.entryTime=entryTime;
 }
 public LocalDateTime getExitTime(){
-    return ExitTime;
+    return exitTime;
 }
 public void setExitTime(LocalDateTime exitTime){
     this.exitTime=exitTime;
@@ -48,7 +48,7 @@ public String getLocation(){
 public void setLocation(String location){
     this.location=location;
 }
-public VisitLog(){}
+
 public VisitLog(Long id,LocalDateTime entryTime,LocalDateTime exitTime,String purpose,String location){
     this.id=id;
     this.entryTime=entryTime;
@@ -56,4 +56,6 @@ public VisitLog(Long id,LocalDateTime entryTime,LocalDateTime exitTime,String pu
     this.purpose=purpose;
     this.location=location;
 }
+public VisitLog()
+{}
 }
