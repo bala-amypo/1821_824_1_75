@@ -14,12 +14,12 @@ public class RiskRule{
     private String ruleName;
     private Integer threshold;
     private Integer scoreImpact;
-    private LocaDateTime;
+    private LocalDateTime createdAt;
     public enum RuleType{
-        AFTER_HOURS
-        FREQUENT_VISITS
-        BLACKLISK
-        KEYWORD
+        AFTER_HOURS,
+        FREQUENT_VISITS,
+        BLACKLISK,
+        KEYWORD,
         CUSTOM
     }
     public Long getId(){
