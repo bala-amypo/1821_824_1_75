@@ -50,7 +50,7 @@ public class RiskRule{
     public Integer getScoreImpact(){
         return scoreImpact;
     }
-    public void setScoreImpact(Integer scoreInpact){
+    public void setScoreImpact(Integer scoreImpact){
         this.scoreImpact=scoreImpact;
     }
     public LocalDateTime getCreatedAt(){
