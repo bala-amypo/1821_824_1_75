@@ -34,4 +34,18 @@ public class RiskRule{
     public void setRuleName(String ruleName){
         this.ruleName=ruleName
     }
+    public Integer getThreshold(){
+        return thresold;
+    }
+    public void getThreshold(Integer threshold){
+        this.threshold=threshold;
+    }
+    public Integer getScoreImpact(){
+        return scoreImpact;
+    }
+    public void setScoreImpact(Integet scoreInpact){
+        this.scoreImpact=scoreImpact;
+    }
+    public RiskRule(){}
+    public RiskRole(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createsAt)
 }
