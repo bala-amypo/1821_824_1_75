@@ -1,7 +1,10 @@
 package com.example.demo.service;
+import com.example.demo.dto.AuthRequest;
+
+import com.example.demo.dto.RegisterRequest;
 import com.example.demo.entity.User;
-public interface User{
-    Visitor createVisitor(Visitor visitor);
-    Visitor getVisitor(Long id);
-    List<Visitor>getAllVisitors();
+public interface UserService{
+    User register(RegisterRequest request);
+    AuthResponse login(AuthRequest request);
+    User getByEmail(String email);
 }
