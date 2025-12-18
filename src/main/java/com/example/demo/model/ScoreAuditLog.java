@@ -29,6 +29,9 @@ public class ScoreAuditLog{
     public getReason(){
         return reason;
     }
-    pu
+    public void setReason(String reason){
+        this.reason=reason;
+    }
+    public LocalDateTime
 
 }
