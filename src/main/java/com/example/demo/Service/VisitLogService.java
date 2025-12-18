@@ -1,5 +1,5 @@
 package com.example.demo.service;
-import java.utio.List;
+import java.util.List;
 import com.example.demo.entity.VisitLog;
 public interface VisitLogService{
     VisitLog createVisitLog(Long VisitorId, visitLog log);

@@ -1,8 +1,8 @@
 package com.example.demo.service;
 import java.util.List;
-import com.example.demo.entity.RiskRuleService;
+import com.example.demo.entity.RiskRule;
 public interface RiskRuleService{
     RiskRule createRule(RiskRule Rule);
-    List<RiskRuleService>getAllRules();
+    List<RiskRule>getAllRules();
     RiskRule getRule(Long id);
 }
