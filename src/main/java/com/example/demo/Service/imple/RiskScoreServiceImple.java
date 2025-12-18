@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.imple;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import com.example.demo.repository.RiskScoreRepository;
 import com.example.demo.service.RiskScoreService;
 
 @Service
-public class RiskScoreServiceImpl implements RiskScoreService {
+public class RiskScoreServiceImple implements RiskScoreService {
 
     private final RiskScoreRepository riskScoreRepository;
 
-    public RiskScoreServiceImpl(RiskScoreRepository riskScoreRepository) {
+    public RiskScoreServiceImple(RiskScoreRepository riskScoreRepository) {
         this.riskScoreRepository = riskScoreRepository;
     }
 

@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.imple;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import com.example.demo.repository.VisitorRepository;
 import com.example.demo.service.VisitorService;
 
 @Service
-public class VisitorServiceImpl implements VisitorService {
+public class VisitorServiceImple implements VisitorService {
 
     private final VisitorRepository visitorRepository;
 
-    public VisitorServiceImpl(VisitorRepository visitorRepository) {
+    public VisitorServiceImple(VisitorRepository visitorRepository) {
         this.visitorRepository = visitorRepository;
     }
 

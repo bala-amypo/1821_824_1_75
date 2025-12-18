@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.imple;
 
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,11 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImple implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImple(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

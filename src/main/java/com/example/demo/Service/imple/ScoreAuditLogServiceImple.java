@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.imple;
 
 import org.springframework.stereotype.Service;
 
@@ -7,11 +7,11 @@ import com.example.demo.repository.ScoreAuditLogRepository;
 import com.example.demo.service.ScoreAuditLogService;
 
 @Service
-public class ScoreAuditLogServiceImpl implements ScoreAuditLogService {
+public class ScoreAuditLogServiceImple implements ScoreAuditLogService {
 
     private final ScoreAuditLogRepository repository;
 
-    public ScoreAuditLogServiceImpl(ScoreAuditLogRepository repository) {
+    public ScoreAuditLogServiceImple(ScoreAuditLogRepository repository) {
         this.repository = repository;
     }
 
