@@ -18,7 +18,12 @@ public class RiskRule{
     public enum RuleType{
         AFTER_HOURS
         FREQUENT_VISITS
-        
-
+        BLACKLISK
+        KEYWORD
+        CUSTOM
     }
+    public Long getId(){
+        return id;
+    }
+    public void 
 }
