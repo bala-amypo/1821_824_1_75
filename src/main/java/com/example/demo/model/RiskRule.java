@@ -32,7 +32,13 @@ public class RiskRule{
         return rulename;
     }
     public void setRuleName(String ruleName){
-        this.ruleName=ruleName
+        this.ruleName=ruleName;
+    }
+    public RuleType getRuleType(){
+        return ruleType;
+    }
+    public void setRuleType(RuleType ruleType){
+        this.ruleType=ruleType;
     }
     public Integer getThreshold(){
         return thresold;
@@ -46,6 +52,18 @@ public class RiskRule{
     public void setScoreImpact(Integet scoreInpact){
         this.scoreImpact=scoreImpact;
     }
+    public LocalDateTime getCreatedAt(){
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt=createdAt;
+    }
     public RiskRule(){}
-    public RiskRole(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createsAt)
+    public RiskRule(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createsAt){
+        this.id=id;
+        this.ruleName=ruleName;
+        this.threshold=threshold;
+        this.scoreImpact=scoreImpact;
+
+    }
 }
