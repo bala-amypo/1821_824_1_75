@@ -35,6 +35,12 @@ public class ScoreAuditLog{
     public getLoggedAt(){
         return loggedAt;
     }
-    public void setLoggedAt()
+    public void setLoggedAt(LocalDateTime loggedAt){
+        this.loggedAt=loggedAt;
+    }
+public ScoreAuditLog(Long id,integer scoreChange,String reason,LocalDateTime loggedAt){
+    this.id=id;
+    this.scoreChange
+}
 
 }
