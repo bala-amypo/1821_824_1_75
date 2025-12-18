@@ -32,6 +32,9 @@ public class ScoreAuditLog{
     public void setReason(String reason){
         this.reason=reason;
     }
-    public LocalDateTime
+    public getLoggedAt(){
+        return loggedAt;
+    }
+    public void setLoggedAt()
 
 }
