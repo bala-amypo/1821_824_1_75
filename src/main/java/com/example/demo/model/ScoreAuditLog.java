@@ -14,6 +14,21 @@ public class ScoreAuditLog{
     private integer scoreChange;
     private String reason;
     private LocalDateTime loggedAt;
-    public 
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    public getScoreChange(){
+        return scoreChenge;
+    }
+    public void setScoreChange(integer scoreChenge){
+        this.scoreChenge=scoreChenge;
+    }
+    public getReason(){
+        return reason;
+    }
+    pu
 
 }
