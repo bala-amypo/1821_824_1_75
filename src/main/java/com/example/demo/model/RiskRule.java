@@ -22,6 +22,7 @@ public class RiskRule{
         KEYWORD,
         CUSTOM
     }
+    private RuleType ruleType;
     public Long getId(){
         return id;
     }
@@ -29,7 +30,7 @@ public class RiskRule{
         this.id=id;
     }
     public String getRuleName(){
-        return rulename;
+        return ruleName;
     }
     public void setRuleName(String ruleName){
         this.ruleName=ruleName;
@@ -59,12 +60,13 @@ public class RiskRule{
         this.createdAt=createdAt;
     }
     public RiskRule(){}
-    public RiskRule(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createsAt){
+    public RiskRule(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createdAt){
         this.id=id;
         this.ruleName=ruleName;
         this.ruleType=ruleType;
         this.threshold=threshold;
         this.scoreImpact=scoreImpact;
+        this.createdAt=createdAt;
 
     }
 }
