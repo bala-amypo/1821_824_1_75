@@ -20,19 +20,19 @@ public class ScoreAuditLog{
     public void setId(Long id){
         this.id=id;
     }
-    public getScoreChange(){
+    public integer getScoreChange(){
         return scoreChenge;
     }
     public void setScoreChange(integer scoreChenge){
-        this.scoreChenge=scoreChenge;
+        this.scoreChenge=scoreChange;
     }
-    public getReason(){
+    public String getReason(){
         return reason;
     }
     public void setReason(String reason){
         this.reason=reason;
     }
-    public getLoggedAt(){
+    public LocalDateTime getLoggedAt(){
         return loggedAt;
     }
     public void setLoggedAt(LocalDateTime loggedAt){
@@ -40,7 +40,10 @@ public class ScoreAuditLog{
     }
 public ScoreAuditLog(Long id,integer scoreChange,String reason,LocalDateTime loggedAt){
     this.id=id;
-    this.scoreChange
+    this.scoreChange=scoreChange;
+    this.reason=reason;
+    this.loggedAt=loggedAt;
 }
+public ScoreAuditLog(){}
 
 }
