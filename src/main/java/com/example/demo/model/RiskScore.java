@@ -12,12 +12,13 @@ public class RiskScore{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Integer totalScore;
-    public enum riskLevel{
+    public enum RiskLevel{
         LOW,
         MEDIUM,
         HIGH,
         CRITICAL
     }
+    private RiskLevel riskLevel;
     private LocalDateTime evaluatedAt;
     public Long getId(){
         return id;
