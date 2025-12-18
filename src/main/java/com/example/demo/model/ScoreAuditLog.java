@@ -11,7 +11,7 @@ public class ScoreAuditLog{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private integer scoreChange;
+    private Integer scoreChange;
     private String reason;
     private LocalDateTime loggedAt;
     public Long getId(){
@@ -20,11 +20,11 @@ public class ScoreAuditLog{
     public void setId(Long id){
         this.id=id;
     }
-    public integer getScoreChange(){
-        return scoreChenge;
+    public Integer getScoreChange(){
+        return scoreChange;
     }
-    public void setScoreChange(integer scoreChenge){
-        this.scoreChenge=scoreChange;
+    public void setScoreChange(Integer scoreChange){
+        this.scoreChange=scoreChange;
     }
     public String getReason(){
         return reason;
@@ -38,7 +38,7 @@ public class ScoreAuditLog{
     public void setLoggedAt(LocalDateTime loggedAt){
         this.loggedAt=loggedAt;
     }
-public ScoreAuditLog(Long id,integer scoreChange,String reason,LocalDateTime loggedAt){
+public ScoreAuditLog(Long id,Integer scoreChange,String reason,LocalDateTime loggedAt){
     this.id=id;
     this.scoreChange=scoreChange;
     this.reason=reason;
