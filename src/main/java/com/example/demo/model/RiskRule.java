@@ -1,4 +1,4 @@
-package com.example.demao.entity;
+package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -41,7 +41,7 @@ public class RiskRule{
         this.ruleType=ruleType;
     }
     public Integer getThreshold(){
-        return thresold;
+        return threshold;
     }
     public void getThreshold(Integer threshold){
         this.threshold=threshold;
@@ -49,7 +49,7 @@ public class RiskRule{
     public Integer getScoreImpact(){
         return scoreImpact;
     }
-    public void setScoreImpact(Integet scoreInpact){
+    public void setScoreImpact(Integer scoreInpact){
         this.scoreImpact=scoreImpact;
     }
     public LocalDateTime getCreatedAt(){
@@ -62,6 +62,7 @@ public class RiskRule{
     public RiskRule(Long id,String ruleName,RuleType ruleType,Integer threshold,Integer scoreImpact,LocalDateTime createsAt){
         this.id=id;
         this.ruleName=ruleName;
+        this.ruleType=ruleType;
         this.threshold=threshold;
         this.scoreImpact=scoreImpact;
 
