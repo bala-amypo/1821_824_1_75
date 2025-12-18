@@ -34,5 +34,21 @@ public class RiskScore{
     public LocalDateTime getEvaluatedAt(){
         return evaluatedAt;
     }
-    public void setEvaluatedAt(LocalDateTime )
+    public void setEvaluatedAt(LocalDateTime evaluatedAt){
+        this.evaluatedAt=evaluatedAt;
+    }
+    public RiskLevel getRiskLevel(){
+        return risklevel;
+    }
+    public void setRiskLevel(RiskLevel riskLevel){
+        this.riskLevel=risklevel;
+    }
+    public RiskScore(ong id,Integer totalScore,LocalDateTime,RiskLevel riskLevel){
+        this.id=id;
+        this.totalScore=totalScore;
+        this.riskLevel=riskLevel;
+        this.evaluatedAt=evaluatedAt;
+
+    }
+    public RiskScore()
 }
