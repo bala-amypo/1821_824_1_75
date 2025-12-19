@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.ScoreAuditLog;
@@ -16,9 +18,12 @@ public class ScoreAuditLogServiceImpl implements ScoreAuditLogService {
     }
 
     @Override
-    public ScoreAuditLog logScoreChange(Long visitorId, Long ruleId, ScoreAuditLog log) {
-        log.setVisitorId(visitorId);
-        log.setRuleId(ruleId);
+    public ScoreAuditLog save(ScoreAuditLog log) {
         return repository.save(log);
+    }
+
+    @Override
+    public List<ScoreAuditLog> getAll() {
+        return repository.findAll();
     }
 }
