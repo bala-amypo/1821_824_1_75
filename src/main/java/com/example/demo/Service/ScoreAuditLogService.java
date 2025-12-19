@@ -1,8 +1,8 @@
-// package com.example.demo.service;
+package com.example.demo.service;
 
-// import com.example.demo.entity.ScoreAuditLog;
+import com.example.demo.entity.ScoreAuditLog;
 
-// public interface ScoreAuditLogService {
-//     ScoreAuditLog getById(Long id);
-//     ScoreAuditLog save(ScoreAuditLog log);
-// }
+public interface ScoreAuditLogService {
+    ScoreAuditLog getById(Long id);
+    ScoreAuditLog save(ScoreAuditLog log);
+}
