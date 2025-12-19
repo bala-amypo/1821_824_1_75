@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.RiskScore;
 import com.example.demo.service.RiskScoreService;
-
 import java.util.List;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/risk-scores")
-public class RiskScoreController { // Must match filename
+public class RiskScoreController {  // Matches filename
     private final RiskScoreService riskScoreService;
 
     public RiskScoreController(RiskScoreService riskScoreService) {
