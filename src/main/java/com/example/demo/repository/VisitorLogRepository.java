@@ -1,7 +1,13 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.VisitLog;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.entity.VisitorLog;
-public interface VisitorLogRepository extends JpaRepository<Visilog,Long>{
-    
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface VisitLogRepository extends JpaRepository<VisitLog, Long> {
+
+    List<VisitLog> findByVisitorId(Long visitorId);
 }
