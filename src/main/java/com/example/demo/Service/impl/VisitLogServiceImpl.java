@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.VisitLog;
 import com.example.demo.repository.VisitLogRepository;
 import com.example.demo.service.VisitLogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,21 +10,24 @@ import java.util.List;
 @Service
 public class VisitLogServiceImpl implements VisitLogService {
 
-    @Autowired
-    private VisitLogRepository visitLogRepository;
+    private final VisitLogRepository repository;
 
-    @Override
-    public VisitLog createVisitLog(Long visitorId, VisitLog log) {
-        return visitLogRepository.save(log);
+    public VisitLogServiceImpl(VisitLogRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public VisitLog getLog(Long id) {
-        return visitLogRepository.findById(id).orElse(null);
+    public VisitLog save(VisitLog visitLog) {
+        return repository.save(visitLog);
     }
 
     @Override
-    public List<VisitLog> getLogsByVisitor(Long visitorId) {
-        return visitLogRepository.findAll();
+    public VisitLog findById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<VisitLog> findAll() {
+        return repository.findAll();
     }
 }
