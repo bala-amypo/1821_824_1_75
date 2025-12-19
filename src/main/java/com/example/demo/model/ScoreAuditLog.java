@@ -1,6 +1,10 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,36 +14,24 @@ public class ScoreAuditLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long visitorId;  // for create method
+    private Long scoreId;    // for create method
     private String action;
-    private Integer score;
-
     private LocalDateTime createdAt;
 
-    public ScoreAuditLog() {
-        this.createdAt = LocalDateTime.now();
-    }
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getVisitorId() { return visitorId; }
+    public void setVisitorId(Long visitorId) { this.visitorId = visitorId; }
 
-    public String getAction() {
-        return action;
-    }
+    public Long getScoreId() { return scoreId; }
+    public void setScoreId(Long scoreId) { this.scoreId = scoreId; }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
+    public String getAction() { return action; }
+    public void setAction(String action) { this.action = action; }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
