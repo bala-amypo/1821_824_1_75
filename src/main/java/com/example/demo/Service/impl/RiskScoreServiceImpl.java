@@ -1,51 +1,48 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.entity.RiskScore;
 import com.example.demo.repository.RiskScoreRepository;
+import com.example.demo.service.RiskScoreService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class RiskScoreServiceImpl implements RiskScoreService {
 
-    private final RiskScoreRepository repository;
-    private final Random random = new Random();
+    private final RiskScoreRepository riskScoreRepository;
 
-    public RiskScoreServiceImpl(RiskScoreRepository repository) {
-        this.repository = repository;
+    public RiskScoreServiceImpl(RiskScoreRepository riskScoreRepository) {
+        this.riskScoreRepository = riskScoreRepository;
     }
 
     @Override
     public RiskScore evaluateVisitor(Long visitorId) {
-        // Example scoring logic
-        int score = random.nextInt(101); // 0-100
 
-        RiskScore.RiskLevel level;
-        if (score < 25) level = RiskScore.RiskLevel.LOW;
-        else if (score < 50) level = RiskScore.RiskLevel.MEDIUM;
-        else if (score < 75) level = RiskScore.RiskLevel.HIGH;
-        else level = RiskScore.RiskLevel.CRITICAL;
+        // Dummy logic (you can replace later)
+        int score = (int) (Math.random() * 100);
+        String riskLevel;
 
-        RiskScore riskScore = repository.findByVisitorId(visitorId)
-                .orElse(new RiskScore(visitorId, score, level));
+        if (score > 70) {
+            riskLevel = "HIGH";
+        } else if (score > 40) {
+            riskLevel = "MEDIUM";
+        } else {
+            riskLevel = "LOW";
+        }
 
-        riskScore.setTotalScore(score);
-        riskScore.setRiskLevel(level);
-        repository.save(riskScore);
-
-        return riskScore;
+        RiskScore riskScore = new RiskScore(visitorId, score, riskLevel);
+        return riskScoreRepository.save(riskScore);
     }
 
     @Override
-    public RiskScore getScoreByVisitorId(Long visitorId) {
-        return repository.findByVisitorId(visitorId)
-                .orElse(null);
+    public RiskScore getScoreForVisitor(Long visitorId) {
+        return riskScoreRepository.findByVisitorId(visitorId)
+                .orElseThrow(() -> new RuntimeException("RiskScore not found for visitorId: " + visitorId));
     }
 
     @Override
     public List<RiskScore> getAllScores() {
-        return repository.findAll();
+        return riskScoreRepository.findAll();
     }
 }
