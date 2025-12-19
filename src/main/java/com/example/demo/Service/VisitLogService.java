@@ -4,10 +4,7 @@ import com.example.demo.entity.VisitLog;
 import java.util.List;
 
 public interface VisitLogService {
-
-    VisitLog save(VisitLog visitLog);
-
-    VisitLog findById(Long id);
-
-    List<VisitLog> findAll();
+    VisitLog create(Long visitorId, VisitLog log);
+    List<VisitLog> listByVisitor(Long visitorId);
+    VisitLog getById(Long id);
 }
