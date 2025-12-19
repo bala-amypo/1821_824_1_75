@@ -4,7 +4,16 @@ import com.example.demo.entity.RiskScore;
 import java.util.List;
 
 public interface RiskScoreService {
-    RiskScore evaluate(Long visitorId);
-    RiskScore getByVisitor(Long visitorId);
+
     List<RiskScore> listAll();
+
+    RiskScore getById(Long id);
+
+    RiskScore save(RiskScore score);
+
+    // Method required by controller
+    RiskScore evaluate(Long visitorId);
+
+    // Method missing that caused compilation error
+    RiskScore getByVisitor(Long visitorId);
 }
