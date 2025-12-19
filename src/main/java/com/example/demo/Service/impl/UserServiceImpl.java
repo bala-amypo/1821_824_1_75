@@ -1,4 +1,4 @@
-package com.example.demo.service.imple;
+package com.example.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,11 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
 @Service
-public class UserServiceImple implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImple(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -29,7 +29,9 @@ public class UserServiceImple implements UserService {
     @Override
     public User login(AuthRequest request) {
         return userRepository.findByEmailAndPassword(
-                request.getEmail(), request.getPassword());
+                request.getEmail(),
+                request.getPassword()
+        );
     }
 
     @Override
