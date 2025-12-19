@@ -1,43 +1,51 @@
-package com.example.demo.service.impl;
+package com.example.demo.service;
 
 import com.example.demo.entity.RiskScore;
-import com.example.demo.service.RiskScoreService;
+import com.example.demo.repository.RiskScoreRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class RiskScoreServiceImpl implements RiskScoreService {
 
-    @Override
-    public List<RiskScore> listAll() {
-        return new ArrayList<>(); // Replace with DB logic
+    private final RiskScoreRepository repository;
+    private final Random random = new Random();
+
+    public RiskScoreServiceImpl(RiskScoreRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public RiskScore getById(Long id) {
-        return new RiskScore(); // Replace with DB logic
+    public RiskScore evaluateVisitor(Long visitorId) {
+        // Example scoring logic
+        int score = random.nextInt(101); // 0-100
+
+        RiskScore.RiskLevel level;
+        if (score < 25) level = RiskScore.RiskLevel.LOW;
+        else if (score < 50) level = RiskScore.RiskLevel.MEDIUM;
+        else if (score < 75) level = RiskScore.RiskLevel.HIGH;
+        else level = RiskScore.RiskLevel.CRITICAL;
+
+        RiskScore riskScore = repository.findByVisitorId(visitorId)
+                .orElse(new RiskScore(visitorId, score, level));
+
+        riskScore.setTotalScore(score);
+        riskScore.setRiskLevel(level);
+        repository.save(riskScore);
+
+        return riskScore;
     }
 
     @Override
-    public RiskScore save(RiskScore score) {
-        return score; // Replace with DB save
+    public RiskScore getScoreByVisitorId(Long visitorId) {
+        return repository.findByVisitorId(visitorId)
+                .orElse(null);
     }
 
     @Override
-    public RiskScore evaluate(Long visitorId) {
-        // Example stub: calculate risk score
-        RiskScore score = new RiskScore();
-        score.setVisitorId(visitorId);
-        return score;
-    }
-
-    @Override
-    public RiskScore getByVisitor(Long visitorId) {
-        // Example stub: fetch risk score by visitor
-        RiskScore score = new RiskScore();
-        score.setVisitorId(visitorId);
-        return score;
+    public List<RiskScore> getAllScores() {
+        return repository.findAll();
     }
 }

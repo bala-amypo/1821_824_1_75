@@ -5,15 +5,9 @@ import java.util.List;
 
 public interface RiskScoreService {
 
-    List<RiskScore> listAll();
+    RiskScore evaluateVisitor(Long visitorId);
 
-    RiskScore getById(Long id);
+    RiskScore getScoreByVisitorId(Long visitorId);
 
-    RiskScore save(RiskScore score);
-
-    // Method required by controller
-    RiskScore evaluate(Long visitorId);
-
-    // Method missing that caused compilation error
-    RiskScore getByVisitor(Long visitorId);
+    List<RiskScore> getAllScores();
 }
