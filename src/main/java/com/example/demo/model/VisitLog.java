@@ -1,9 +1,11 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class VisitLog {
@@ -12,9 +14,12 @@ public class VisitLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String purpose;
+    private Long visitorId; // <-- add this field
 
-    // getters & setters
+    private String action; // example field
+    private LocalDateTime createdAt;
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -23,11 +28,27 @@ public class VisitLog {
         this.id = id;
     }
 
-    public String getPurpose() {
-        return purpose;
+    public Long getVisitorId() {
+        return visitorId;
     }
 
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
+    public void setVisitorId(Long visitorId) {
+        this.visitorId = visitorId;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
