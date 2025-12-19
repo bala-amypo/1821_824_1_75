@@ -1,56 +1,46 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class RiskScore{
+public class RiskScore {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer totalScore;
-    public enum RiskLevel{
-        LOW,
-        MEDIUM,
-        HIGH,
-        CRITICAL
-    }
-    private RiskLevel riskLevel;
+
+    private Long visitorId;
+
+    private int score;
+
     private LocalDateTime evaluatedAt;
-    public Long getId(){
+
+    public RiskScore() {
+        this.evaluatedAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
         return id;
     }
-    public void setId(Long id){
-        this.id=id;
+
+    public Long getVisitorId() {
+        return visitorId;
     }
-    public Integer getTotalScore(){
-        return totalScore;
+
+    public void setVisitorId(Long visitorId) {
+        this.visitorId = visitorId;
     }
-    public void setTotalScore(Integer totalScore){
-        this.totalScore=totalScore;
+
+    public int getScore() {
+        return score;
     }
-    public LocalDateTime getEvaluatedAt(){
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public LocalDateTime getEvaluatedAt() {
         return evaluatedAt;
     }
-    public void setEvaluatedAt(LocalDateTime evaluatedAt){
-        this.evaluatedAt=evaluatedAt;
-    }
-    public RiskLevel getRiskLevel(){
-        return riskLevel;
-    }
-    public void setRiskLevel(RiskLevel riskLevel){
-        this.riskLevel=riskLevel;
-    }
-    public RiskScore(Long id,Integer totalScore,LocalDateTime evaluatedAt,RiskLevel riskLevel){
-        this.id=id;
-        this.totalScore=totalScore;
-        this.riskLevel=riskLevel;
-        this.evaluatedAt=evaluatedAt;
-
-    }
-    public RiskScore()
-    {}
 }
