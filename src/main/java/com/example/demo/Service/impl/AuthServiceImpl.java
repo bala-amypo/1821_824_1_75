@@ -1,40 +1,40 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.entity.Auth;
+import com.example.demo.repository.AuthRepository;
 import com.example.demo.service.AuthService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private final UserRepository userRepository;
+    private final AuthRepository authRepository;
 
-    public AuthServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthServiceImpl(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
     @Override
-    public User register(String username, String password) {
+    public Auth register(String username, String password) {
 
-        if (userRepository.findByUsername(username).isPresent()) {
+        if (authRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
 
-        User user = new User(username, password);
-        return userRepository.save(user);
+        Auth auth = new Auth(username, password);
+        return authRepository.save(auth);
     }
 
     @Override
-    public User login(String username, String password) {
+    public Auth login(String username, String password) {
 
-        User user = userRepository.findByUsername(username)
+        Auth auth = authRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!user.getPassword().equals(password)) {
+        if (!auth.getPassword().equals(password)) {
             throw new RuntimeException("Invalid password");
         }
 
-        return user;
+        return auth;
     }
 }

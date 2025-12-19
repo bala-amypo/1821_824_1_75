@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.User;
+import com.example.demo.entity.Auth;
 
 public interface AuthService {
 
-    User register(String username, String password);
+    Auth register(String username, String password);
 
-    User login(String username, String password);
+    Auth login(String username, String password);
 }

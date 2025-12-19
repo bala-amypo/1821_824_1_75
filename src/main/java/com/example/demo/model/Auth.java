@@ -3,8 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "auth")
+public class Auth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +16,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User() {
+    public Auth() {
     }
 
-    public User(String username, String password) {
+    public Auth(String username, String password) {
         this.username = username;
         this.password = password;
     }
