@@ -14,11 +14,10 @@ public class Visitor {
     private String idProof;
     private String fullName;
     private String email;
-
-    // Constructors
+    private LocalDateTime crreatedAt;
     public Visitor() {}
 
-    public Visitor(Long id,String fullName, String email,String phone,String idProof) {
+    public Visitor(Long id,String fullName, String email,String phone,String idProof,LocalDateTime createdAt) {
         this.id=id;
         this.fullName = fullName;
         this.email = email;
@@ -37,8 +36,8 @@ public class Visitor {
         return fullname;
     }
 
-    public void setFullName(String fullame) {
-        this.fullname = name;
+    public void setFullName(String fullName) {
+        this.fullame = fullName;
     }
 
     public String getEmail() {
@@ -47,5 +46,11 @@ public class Visitor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPhone(){
+        return phone;
+    }
+    public void getPhone(String phone){
+        this.phone=phone;
     }
 }

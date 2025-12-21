@@ -13,13 +13,9 @@ public class VisitLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long visitorId; // <-- add this field
-
-    private String action; // example field
+    private Long visitorId; 
+    private String action;
     private LocalDateTime createdAt;
-
-    // Getters and Setters
     public Long getId() {
         return id;
     }
