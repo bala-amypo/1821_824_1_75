@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "risk_scores")
 public class RiskScore {
 
     @Id
