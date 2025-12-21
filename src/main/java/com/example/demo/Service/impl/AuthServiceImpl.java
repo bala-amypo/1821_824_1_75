@@ -16,25 +16,16 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Auth register(String username, String password) {
-
-        if (authRepository.findByUsername(username).isPresent()) {
-            throw new RuntimeException("Username already exists");
-        }
-
-        Auth auth = new Auth(username, password);
+        Auth auth = new Auth();
+        auth.setUsername(username);
+        auth.setPassword(password);
         return authRepository.save(auth);
     }
 
     @Override
     public Auth login(String username, String password) {
-
-        Auth auth = authRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        if (!auth.getPassword().equals(password)) {
-            throw new RuntimeException("Invalid password");
-        }
-
-        return auth;
+        return authRepository
+                .findByUsernameAndPassword(username, password)
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 }
