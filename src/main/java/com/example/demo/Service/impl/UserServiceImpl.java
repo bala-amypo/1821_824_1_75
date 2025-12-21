@@ -17,22 +17,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Auth register(String username, String password) {
 
-        if (authRepository.findByUsername(username).isPresent()) {
-            throw new RuntimeException("Username already exists");
-        }
-
         Auth auth = new Auth();
         auth.setUsername(username);
         auth.setPassword(password);
 
         return authRepository.save(auth);
-    }
-
-    @Override
-    public Auth login(String username, String password) {
-
-        return authRepository
-                .findByUsernameAndPassword(username, password)
-                .orElseThrow(() -> new RuntimeException("Invalid username or password"));
     }
 }
