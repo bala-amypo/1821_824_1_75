@@ -1,41 +1,31 @@
 package com.example.demo.service.impl;
 
-import org.springframework.stereotype.Service;
-
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.RegisterRequest;
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.entity.Auth;
+import com.example.demo.repository.AuthRepository;
 import com.example.demo.service.UserService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final AuthRepository authRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserServiceImpl(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
     @Override
-    public User register(RegisterRequest request) {
-        User user = new User();
-        user.setName(request.getName());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        return userRepository.save(user);
+    public Auth register(String username, String password) {
+        Auth auth = new Auth();
+        auth.setUsername(username);
+        auth.setPassword(password);
+        return authRepository.save(auth);
     }
 
     @Override
-    public User login(AuthRequest request) {
-        return userRepository.findByEmailAndPassword(
-                request.getEmail(),
-                request.getPassword()
-        );
-    }
-
-    @Override
-    public User getByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public Auth login(String username, String password) {
+        return authRepository
+                .findByUsernameAndPassword(username, password)
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 }
