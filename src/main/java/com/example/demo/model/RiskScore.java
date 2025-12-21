@@ -14,48 +14,35 @@ public class RiskScore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long visitorId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "visitor_id", unique = true)
+    private Visitor visitor;
 
     @Column(nullable = false)
-    private Integer score;
+    private Integer totalScore;
 
-    private String riskLevel;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RiskLevel riskLevel;
 
-    public RiskScore() {
+    private LocalDateTime evaluatedAt;
+
+    public enum RiskLevel {
+        LOW,
+        MEDIUM,
+        HIGH,
+        CRITICAL
     }
 
-    public RiskScore(Long visitorId, Integer score, String riskLevel) {
-        this.visitorId = visitorId;
-        this.score = score;
-        this.riskLevel = riskLevel;
+    @PrePersist
+    @PreUpdate
+    public void validateAndEvaluate() {
+        if (totalScore == null || totalScore < 0) {
+            throw new RuntimeException("totalScore must be >= 0");
+        }
+        this.riskLevel = RiskLevelUtils.fromScore(totalScore);
+        this.evaluatedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getVisitorId() {
-        return visitorId;
-    }
-
-    public void setVisitorId(Long visitorId) {
-        this.visitorId = visitorId;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public String getRiskLevel() {
-        return riskLevel;
-    }
-
-    public void setRiskLevel(String riskLevel) {
-        this.riskLevel = riskLevel;
-    }
+    // Getters and Setters
 }
