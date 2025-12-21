@@ -16,11 +16,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Auth register(String username, String password) {
-
         Auth auth = new Auth();
         auth.setUsername(username);
         auth.setPassword(password);
-
         return authRepository.save(auth);
     }
 }
+
