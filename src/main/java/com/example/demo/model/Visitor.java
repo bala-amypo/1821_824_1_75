@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.Loca
 
 @Entity
 public class Visitor {
@@ -21,8 +22,9 @@ public class Visitor {
         this.id=id;
         this.fullName = fullName;
         this.email = email;
-        this.phone=phone
+        this.phone=phone;
         this.idProof=idProof;
+        this.createdAt=createdAt;
     }
     public Long getId() {
         return id;
@@ -50,7 +52,13 @@ public class Visitor {
     public String getPhone(){
         return phone;
     }
-    public void getPhone(String phone){
+    public void setPhone(String phone){
         this.phone=phone;
+    }
+    public LocalDateTime getCreatedAt(){
+        return createdAt;
+    }
+    public void setcreatedAt(LocalDateTime creadtedAt){
+        this.createdAt=createdAt;
     }
 }
