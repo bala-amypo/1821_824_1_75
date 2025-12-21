@@ -18,12 +18,13 @@ public class Visitor {
     // Constructors
     public Visitor() {}
 
-    public Visitor(String fullName, String email,String idProof) {
-        this.name = name;
+    public Visitor(Long id,String fullName, String email,String phone,String idProof) {
+        this.id=id;
+        this.fullName = fullName;
         this.email = email;
+        this.phone=phone
+        this.idProof=idProof;
     }
-
-    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -32,12 +33,12 @@ public class Visitor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullame) {
+        this.fullname = name;
     }
 
     public String getEmail() {
