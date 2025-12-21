@@ -2,11 +2,11 @@ package com.example.demo.service.impl;
 
 import com.example.demo.entity.Auth;
 import com.example.demo.repository.AuthRepository;
-import com.example.demo.service.AuthService;
+import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImpl implements UserService {
 
     private final AuthRepository authRepository;
 
@@ -20,12 +20,5 @@ public class AuthServiceImpl implements AuthService {
         auth.setUsername(username);
         auth.setPassword(password);
         return authRepository.save(auth);
-    }
-
-    @Override
-    public Auth login(String username, String password) {
-        return authRepository
-                .findByUsernameAndPassword(username, password)
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 }
