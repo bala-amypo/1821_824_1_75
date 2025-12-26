@@ -1,15 +1,16 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.dto.RegisterRequest;
-import com.example.demo.model.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
+@Service
+public class UserServiceImpl {
 
-    AuthResponse login(AuthRequest request);
+    private final PasswordEncoder passwordEncoder;
 
-    User register(RegisterRequest request);
+    public UserServiceImpl(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    User getByEmail(String email);
+    // Now you can use passwordEncoder.encode(password) when saving users
 }
