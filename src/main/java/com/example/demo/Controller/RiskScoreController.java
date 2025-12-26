@@ -1,4 +1,4 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
 import com.example.demo.model.RiskScore;
 import com.example.demo.service.RiskScoreService;
