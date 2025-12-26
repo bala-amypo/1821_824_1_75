@@ -1,10 +1,20 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Visitor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,27 +32,30 @@ public class Visitor {
 
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "visitor")
+    @JsonIgnore
+    private List<VisitLog> visitLogs;
+
+    @OneToOne(mappedBy = "visitor")
+    @JsonIgnore
+    private RiskScore riskScore;
+
+    @OneToMany(mappedBy = "visitor")
+    @JsonIgnore
+    private List<ScoreAuditLog> scoreAuditLogs;
+
+
     @PrePersist
     public void prePersist() {
-        if (createdAt == null) createdAt = LocalDateTime.now();
+        if (fullName == null || fullName.isBlank()) {
+            throw new RuntimeException("fullName required");
+        }
+        if (phone == null || phone.isBlank()) {
+            throw new RuntimeException("phone required");
+        }
+        if (idProof == null || idProof.isBlank()) {
+            throw new RuntimeException("idProof required");
+        }
+        this.createdAt = LocalDateTime.now();
     }
-
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public String getIdProof() { return idProof; }
-    public void setIdProof(String idProof) { this.idProof = idProof; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

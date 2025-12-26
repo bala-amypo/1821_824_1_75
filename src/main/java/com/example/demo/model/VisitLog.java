@@ -1,18 +1,28 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class VisitLog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "visitor_id", nullable = false)
+    @JsonIgnoreProperties("visitLogs")
     private Visitor visitor;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime entryTime;
 
     private LocalDateTime exitTime;
@@ -23,27 +33,23 @@ public class VisitLog {
     @Column(nullable = false)
     private String location;
 
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
     @PrePersist
     public void prePersist() {
-        if (entryTime == null) entryTime = LocalDateTime.now();
+        if (this.entryTime == null) {
+            this.entryTime = LocalDateTime.now();
+        }
+
+        this.createdAt = LocalDateTime.now();
+
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public Visitor getVisitor() { return visitor; }
-    public void setVisitor(Visitor visitor) { this.visitor = visitor; }
-
-    public LocalDateTime getEntryTime() { return entryTime; }
-    public void setEntryTime(LocalDateTime entryTime) { this.entryTime = entryTime; }
-
-    public LocalDateTime getExitTime() { return exitTime; }
-    public void setExitTime(LocalDateTime exitTime) { this.exitTime = exitTime; }
-
-    public String getPurpose() { return purpose; }
-    public void setPurpose(String purpose) { this.purpose = purpose; }
-
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    @PreUpdate
+    public void preUpdate() {
+        if (exitTime != null && !exitTime.isAfter(entryTime)) {
+            throw new IllegalArgumentException("exitTime must be after entryTime");
+        }
+    }
 }

@@ -1,49 +1,45 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ScoreAuditLog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "visitor_id", nullable = false)
     private Visitor visitor;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "riskrule_id", nullable = true)
     private RiskRule appliedRule;
 
-    @Column(nullable = false)
     private Integer scoreChange;
 
     @Column(nullable = false)
     private String reason;
 
+    @Column(nullable = false, updatable = false)
     private LocalDateTime loggedAt;
 
     @PrePersist
-    public void prePersist() {
-        if (loggedAt == null) loggedAt = LocalDateTime.now();
+    protected void prePersist() {
+        if (reason == null || reason.isBlank()) {
+            throw new IllegalArgumentException("reason required");
+        }
+        if (scoreChange < 0) {
+            throw new IllegalArgumentException("scoreChange must be >= 0");
+        }
+        this.loggedAt = LocalDateTime.now();
     }
-
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public Visitor getVisitor() { return visitor; }
-    public void setVisitor(Visitor visitor) { this.visitor = visitor; }
-
-    public RiskRule getAppliedRule() { return appliedRule; }
-    public void setAppliedRule(RiskRule appliedRule) { this.appliedRule = appliedRule; }
-
-    public Integer getScoreChange() { return scoreChange; }
-    public void setScoreChange(Integer scoreChange) { this.scoreChange = scoreChange; }
-
-    public String getReason() { return reason; }
-    public void setReason(String reason) { this.reason = reason; }
-
-    public LocalDateTime getLoggedAt() { return loggedAt; }
-    public void setLoggedAt(LocalDateTime loggedAt) { this.loggedAt = loggedAt; }
 }
