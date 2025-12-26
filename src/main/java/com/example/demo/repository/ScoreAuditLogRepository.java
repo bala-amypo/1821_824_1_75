@@ -1,8 +1,10 @@
 package com.example.demo.repository;
 
+import com.example.demo.model.ScoreAuditLog;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.entity.ScoreAuditLog;
+import java.util.List;
 
-public interface ScoreAuditLogRepository
-        extends JpaRepository<ScoreAuditLog, Long> {
+public interface ScoreAuditLogRepository extends JpaRepository<ScoreAuditLog, Long> {
+    // List all audit logs for a visitor
+    List<ScoreAuditLog> findByVisitorId(Long visitorId);
 }
