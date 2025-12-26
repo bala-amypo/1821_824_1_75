@@ -1,37 +1,38 @@
 package com.example.demo.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.model.ScoreAuditLog;
 import com.example.demo.service.ScoreAuditLogService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/score-audit-logs")
+@RequestMapping("/api/score-logs")
+@Tag(name = "ScoreAuditLog", description = "Endpoints for score audit logs")
 public class ScoreAuditLogController {
 
-    private final ScoreAuditLogService service;
+    private final ScoreAuditLogService auditLogService;
 
-    public ScoreAuditLogController(ScoreAuditLogService service) {
-        this.service = service;
+    public ScoreAuditLogController(ScoreAuditLogService auditLogService) {
+        this.auditLogService = auditLogService;
     }
 
     @PostMapping("/{visitorId}/{ruleId}")
-    public ResponseEntity<ScoreAuditLog> create(@PathVariable Long visitorId,
-                                                @PathVariable Long ruleId,
-                                                @RequestBody ScoreAuditLog log) {
-        return ResponseEntity.ok(service.logScoreChange(visitorId, ruleId, log));
-    }
-
-    @GetMapping("/visitor/{visitorId}")
-    public ResponseEntity<List<ScoreAuditLog>> logsByVisitor(@PathVariable Long visitorId) {
-        return ResponseEntity.ok(service.getLogsByVisitor(visitorId));
+    public ResponseEntity<ScoreAuditLog> logScoreChange(@PathVariable Long visitorId,
+                                                        @PathVariable Long ruleId,
+                                                        @RequestBody ScoreAuditLog log) {
+        return ResponseEntity.ok(auditLogService.logScoreChange(visitorId, ruleId, log));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ScoreAuditLog> get(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getLog(id));
+    public ResponseEntity<ScoreAuditLog> getLog(@PathVariable Long id) {
+        return ResponseEntity.ok(auditLogService.getLog(id));
+    }
+
+    @GetMapping("/visitor/{visitorId}")
+    public ResponseEntity<List<ScoreAuditLog>> getLogsByVisitor(@PathVariable Long visitorId) {
+        return ResponseEntity.ok(auditLogService.getLogsByVisitor(visitorId));
     }
 }
