@@ -1,21 +1,31 @@
 package com.example.demo.security;
 
+import java.util.Date;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
-
-import java.util.Date;
-import java.util.Set;
 
 @Component
 public class JwtTokenProvider {
 
-    private final String jwtSecret = "secret-key";
-    private final long jwtExpirationMs = 86400000; // 1 day
+    private final String jwtSecret = "secret-key-demo";
+    private final long jwtExpirationMs = 86400000;
 
-    // ✅ THIS is the ONLY generateToken method
-    public String generateToken(String email, Set<String> roles) {
+    public String generateToken(Authentication authentication) {
+
+        String email = authentication.getName();
+
+        var roles = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
         return Jwts.builder()
                 .setSubject(email)
                 .claim("roles", roles)
@@ -25,7 +35,6 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // ✅ REQUIRED by tests
     public Claims getClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
@@ -33,8 +42,16 @@ public class JwtTokenProvider {
                 .getBody();
     }
 
-    // ✅ REQUIRED by JwtAuthenticationFilter
     public String getEmailFromToken(String token) {
         return getClaims(token).getSubject();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            getClaims(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
