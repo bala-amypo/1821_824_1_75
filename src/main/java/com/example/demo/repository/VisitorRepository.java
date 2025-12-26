@@ -1,9 +1,11 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Visitor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.Optional;
+import org.springframework.stereotype.Repository;
 
-public interface VisitorRepository extends JpaRepository<Visitor, Long> {
-    Optional<Visitor> findByEmail(String email); // for auth and registration checks
+import com.example.demo.model.Visitor;
+
+@Repository
+public interface VisitorRepository extends JpaRepository<Visitor,Long> {
+    
 }
