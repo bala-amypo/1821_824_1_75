@@ -1,21 +1,51 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.VisitLog;
+import com.example.demo.model.VisitLog;
+import com.example.demo.model.Visitor;
+import com.example.demo.repository.VisitLogRepository;
+import com.example.demo.repository.VisitorRepository;
 import com.example.demo.service.VisitLogService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class VisitLogServiceImpl implements VisitLogService {
 
-    @Override
-    public List<VisitLog> getAll() {
-        return List.of();
+    private final VisitLogRepository visitLogRepository;
+    private final VisitorRepository visitorRepository;
+
+    public VisitLogServiceImpl(VisitLogRepository visitLogRepository, VisitorRepository visitorRepository) {
+        this.visitLogRepository = visitLogRepository;
+        this.visitorRepository = visitorRepository;
     }
 
     @Override
-    public VisitLog getById(Long id) {
-        return null;
+    public VisitLog createVisitLog(Long visitorId, VisitLog log) {
+        Visitor visitor = visitorRepository.findById(visitorId)
+                .orElseThrow(() -> new RuntimeException("Visitor not found"));
+        log.setVisitor(visitor);
+
+        if (log.getExitTime() != null && log.getExitTime().isBefore(log.getEntryTime())) {
+            throw new IllegalArgumentException("exitTime must be after entryTime");
+        }
+        if (log.getPurpose() == null || log.getPurpose().isBlank()) {
+            throw new IllegalArgumentException("purpose required");
+        }
+        if (log.getLocation() == null || log.getLocation().isBlank()) {
+            throw new IllegalArgumentException("location required");
+        }
+
+        return visitLogRepository.save(log);
+    }
+
+    @Override
+    public VisitLog getLog(Long id) {
+        return visitLogRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("VisitLog not found"));
+    }
+
+    @Override
+    public List<VisitLog> getLogsByVisitor(Long visitorId) {
+        return visitLogRepository.findByVisitorSince(visitorId, java.time.LocalDateTime.MIN);
     }
 }
