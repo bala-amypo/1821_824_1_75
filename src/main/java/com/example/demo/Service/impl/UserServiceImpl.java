@@ -1,17 +1,20 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.User;
-import com.example.demo.dto.RegisterRequest;
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.security.JwtTokenProvider;
-import com.example.demo.service.UserService;
-import com.example.demo.exception.BadRequestException;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.dto.RegisterRequest;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.security.JwtTokenProvider;
+import com.example.demo.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,19 +32,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(RegisterRequest request) {
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new BadRequestException("Email already exists");
+    public AuthResponse register(RegisterRequest request) {
+
+        Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
+        if (existingUser.isPresent()) {
+            throw new BadRequestException("Email already registered");
         }
+
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRoles(request.getRoles());
-        return userRepository.save(user);
+
+        Set<String> roles = request.getRoles();
+        if (roles == null || roles.isEmpty()) {
+            roles = new HashSet<>();
+            roles.add("ROLE_USER");
+        }
+        user.setRoles(roles);
+
+        User savedUser = userRepository.save(user);
+
+        String token = jwtTokenProvider.generateToken(
+                savedUser.getEmail(),
+                savedUser.getRoles()
+        );
+
+        return new AuthResponse(token, savedUser.getEmail(), savedUser.getRoles());
     }
 
     @Override
     public AuthResponse login(AuthRequest request) {
+
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new BadRequestException("Invalid email or password"));
 
@@ -49,13 +70,11 @@ public class UserServiceImpl implements UserService {
             throw new BadRequestException("Invalid email or password");
         }
 
-        String token = jwtTokenProvider.generateToken(user.getEmail(), user.getRoles());
-        return new AuthResponse(token, user.getEmail(), user.getRoles());
-    }
+        String token = jwtTokenProvider.generateToken(
+                user.getEmail(),
+                user.getRoles()
+        );
 
-    @Override
-    public User getByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new BadRequestException("User not found with email: " + email));
+        return new AuthResponse(token, user.getEmail(), user.getRoles());
     }
 }
