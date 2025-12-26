@@ -39,4 +39,13 @@ public class RegisterRequest {
     public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "RegisterRequest{" +
+                "email='" + email + '\'' +
+                ", password='[PROTECTED]'" +
+                ", roles=" + roles +
+                '}';
+    }
 }
