@@ -19,18 +19,15 @@ public class VisitorController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<Visitor> create(@RequestBody Visitor visitor) {
-        return ResponseEntity.ok(service.createVisitor(visitor));
+    public ResponseEntity<Visitor> create(@RequestBody Visitor v) {
+        return ResponseEntity.ok(service.createVisitor(v));
     }
 
-    @GetMapping
-    public ResponseEntity<List<Visitor>> all() {
-        return ResponseEntity.ok(service.getAllVisitors());
-    }
-
-    @GetMapping("/{id}")
     public ResponseEntity<Visitor> get(@PathVariable Long id) {
         return ResponseEntity.ok(service.getVisitor(id));
+    }
+
+    public ResponseEntity<List<Visitor>> all() {
+        return ResponseEntity.ok(service.getAllVisitors());
     }
 }
