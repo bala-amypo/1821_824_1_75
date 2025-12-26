@@ -4,17 +4,14 @@ import com.example.demo.model.VisitLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface VisitLogRepository extends JpaRepository<VisitLog, Long> {
 
-    List<VisitLog> findByVisitorId(Long visitorId);
-
     @Query("SELECT v FROM VisitLog v WHERE v.visitor.id = :visitorId AND v.entryTime >= :since")
     List<VisitLog> findByVisitorSince(@Param("visitorId") Long visitorId, @Param("since") LocalDateTime since);
 
-    @Query("SELECT COUNT(v) FROM VisitLog v WHERE v.visitor.id = :visitorId AND v.entryTime >= :from AND v.entryTime <= :to")
-    Long countVisitsInWindow(@Param("visitorId") Long visitorId, @Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
+    @Query("SELECT COUNT(v) FROM VisitLog v WHERE v.visitor.id = :visitorId AND v.entryTime BETWEEN :start AND :end")
+    long countVisitsInWindow(@Param("visitorId") Long visitorId, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 }

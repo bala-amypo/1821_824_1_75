@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import com.example.demo.model.Visitor;
 import com.example.demo.repository.VisitorRepository;
 import com.example.demo.service.VisitorService;
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class VisitorServiceImpl implements VisitorService {
 
     @Override
     public Visitor createVisitor(Visitor visitor) {
-        if (visitor.getPhone() == null) {
-            throw new IllegalArgumentException("phone required");
+        if (visitor.getPhone() == null || visitor.getPhone().isBlank()) {
+            throw new BadRequestException("phone required");
         }
         return visitorRepository.save(visitor);
     }
@@ -26,7 +28,7 @@ public class VisitorServiceImpl implements VisitorService {
     @Override
     public Visitor getVisitor(Long id) {
         return visitorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Visitor not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found with id: " + id));
     }
 
     @Override
