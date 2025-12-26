@@ -1,10 +1,16 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.*;
-import com.example.demo.model.User;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
-    User register(RegisterRequest request);
-    AuthResponse login(AuthRequest request);
-    User getByEmail(String email);
+@Service
+public class UserService {
+
+    public void register(RegisterRequest request) {
+        // dummy implementation
+    }
+
+    public AuthResponse login(AuthRequest request) {
+        return new AuthResponse("dummy-jwt-token");
+    }
 }

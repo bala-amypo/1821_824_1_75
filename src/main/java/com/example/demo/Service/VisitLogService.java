@@ -1,10 +1,18 @@
 package com.example.demo.service;
 
-import com.example.demo.model.VisitLog;
+import com.example.demo.entity.VisitLog;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public interface VisitLogService {
-    VisitLog createVisitLog(Long visitorId, VisitLog log);
-    VisitLog getLog(Long id);
-    List<VisitLog> getLogsByVisitor(Long visitorId);
+@Service
+public class VisitLogService {
+
+    public List<VisitLog> getAll() {
+        return List.of();
+    }
+
+    public VisitLog getById(Long id) {
+        return null;
+    }
 }
