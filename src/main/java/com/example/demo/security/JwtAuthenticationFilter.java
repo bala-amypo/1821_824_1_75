@@ -12,10 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
+import 
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
+@Autowired
     private final JwtTokenProvider jwtTokenProvider;
+    @Autowired
     private final CustomUserDetailsService userDetailsService;
 
     // ✅ Constructor injection (NO @Autowired)
