@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Visitor {
@@ -10,36 +10,32 @@ public class Visitor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String fullName;
-
+    private String phone;
+    private String idProof;
     private String email;
 
-    @Column(nullable = false)
-    private String phone;
+    @OneToMany(mappedBy = "visitor", cascade = CascadeType.ALL)
+    private List<VisitLog> visitLogs;
 
-    @Column(nullable = false)
-    private String idProof;
+    @OneToOne(mappedBy = "visitor", cascade = CascadeType.ALL)
+    private RiskScore riskScore;
 
-    private LocalDateTime createdAt;
+    public Visitor() {}
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        if (this.phone == null || this.phone.isBlank()) {
-            throw new IllegalArgumentException("phone required");
-        }
+    public Visitor(Long id, String fullName, String phone, String idProof, String email) {
+        this.id = id;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.idProof = idProof;
+        this.email = email;
     }
 
-    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
 
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
@@ -47,6 +43,12 @@ public class Visitor {
     public String getIdProof() { return idProof; }
     public void setIdProof(String idProof) { this.idProof = idProof; }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public List<VisitLog> getVisitLogs() { return visitLogs; }
+    public void setVisitLogs(List<VisitLog> visitLogs) { this.visitLogs = visitLogs; }
+
+    public RiskScore getRiskScore() { return riskScore; }
+    public void setRiskScore(RiskScore riskScore) { this.riskScore = riskScore; }
 }
