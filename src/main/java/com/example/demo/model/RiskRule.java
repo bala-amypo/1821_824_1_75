@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
@@ -11,11 +11,13 @@ public class RiskRule {
 
     private String ruleName;
     private String ruleType;
-    private Integer threshold;
     private Integer scoreImpact;
+    private Integer threshold;
 
+    // Constructors
     public RiskRule() {}
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -25,9 +27,9 @@ public class RiskRule {
     public String getRuleType() { return ruleType; }
     public void setRuleType(String ruleType) { this.ruleType = ruleType; }
 
-    public Integer getThreshold() { return threshold; }
-    public void setThreshold(Integer threshold) { this.threshold = threshold; }
-
     public Integer getScoreImpact() { return scoreImpact; }
     public void setScoreImpact(Integer scoreImpact) { this.scoreImpact = scoreImpact; }
+
+    public Integer getThreshold() { return threshold; }
+    public void setThreshold(Integer threshold) { this.threshold = threshold; }
 }

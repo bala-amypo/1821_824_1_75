@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
@@ -13,11 +13,12 @@ public class RiskScore {
     private String riskLevel;
 
     @OneToOne
-    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+    // Constructors
     public RiskScore() {}
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
