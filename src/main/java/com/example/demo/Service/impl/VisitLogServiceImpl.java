@@ -5,7 +5,6 @@ import com.example.demo.model.Visitor;
 import com.example.demo.repository.VisitLogRepository;
 import com.example.demo.repository.VisitorRepository;
 import com.example.demo.service.VisitLogService;
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -24,26 +23,29 @@ public class VisitLogServiceImpl implements VisitLogService {
 
     @Override
     public VisitLog createVisitLog(Long visitorId, VisitLog log) {
-        Visitor visitor = visitorRepository.findById(visitorId)
-                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found with id: " + visitorId));
 
-        log.setVisitor(visitor);
-
-        if (log.getExitTime() != null && !log.getExitTime().isAfter(log.getEntryTime())) {
-            throw new BadRequestException("exitTime must be after entryTime");
+        if (log.getPurpose() == null || log.getPurpose().isBlank()) {
+            throw new IllegalArgumentException("purpose is required");
         }
 
+        if (log.getLocation() == null || log.getLocation().isBlank()) {
+            throw new IllegalArgumentException("location is required");
+        }
+
+        Visitor visitor = visitorRepository.findById(visitorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found"));
+        log.setVisitor(visitor);
         return visitLogRepository.save(log);
     }
 
     @Override
     public VisitLog getLog(Long id) {
         return visitLogRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("VisitLog not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("VisitLog not found"));
     }
 
     @Override
     public List<VisitLog> getLogsByVisitor(Long visitorId) {
-        return visitLogRepository.findByVisitorSince(visitorId, java.time.LocalDateTime.MIN);
+        return visitLogRepository.findByVisitorId(visitorId);
     }
 }
