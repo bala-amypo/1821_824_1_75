@@ -1,14 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.RiskRule;
+import com.example.demo.entity.RiskRule;
 import com.example.demo.service.RiskRuleService;
-import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/risk-rules")
+@RequestMapping("/risk-rules")
 public class RiskRuleController {
 
     private final RiskRuleService service;
@@ -17,15 +16,13 @@ public class RiskRuleController {
         this.service = service;
     }
 
-    public ResponseEntity<RiskRule> create(RiskRule rule) {
-        return ResponseEntity.ok(service.createRule(rule));
+    @PostMapping
+    public RiskRule create(@RequestBody RiskRule rule) {
+        return service.create(rule);
     }
 
-    public ResponseEntity<RiskRule> get(Long id) {
-        return ResponseEntity.ok(service.getRule(id));
-    }
-
-    public ResponseEntity<List<RiskRule>> all() {
-        return ResponseEntity.ok(service.getAllRules());
+    @GetMapping
+    public List<RiskRule> getAll() {
+        return service.getAll();
     }
 }
