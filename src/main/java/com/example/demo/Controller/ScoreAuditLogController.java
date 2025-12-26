@@ -1,23 +1,41 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ScoreAuditLog;
+import com.example.demo.model.ScoreAuditLog;
 import com.example.demo.service.ScoreAuditLogService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/score-audit-logs")
+@RequestMapping("/api/score-logs")
+@Tag(name = "Score Audit Logs", description = "APIs to manage score audit logs")
 public class ScoreAuditLogController {
 
-    private final ScoreAuditLogService service;
+    private final ScoreAuditLogService scoreAuditLogService;
 
-    public ScoreAuditLogController(ScoreAuditLogService service) {
-        this.service = service;
+    public ScoreAuditLogController(ScoreAuditLogService scoreAuditLogService) {
+        this.scoreAuditLogService = scoreAuditLogService;
     }
 
-    @GetMapping
-    public List<ScoreAuditLog> getAll() {
-        return service.getAll();
+    @PostMapping("/{visitorId}/{ruleId}")
+    public ResponseEntity<ScoreAuditLog> logScoreChange(@PathVariable Long visitorId,
+                                                        @PathVariable Long ruleId,
+                                                        @RequestBody ScoreAuditLog log) {
+        ScoreAuditLog saved = scoreAuditLogService.logScoreChange(visitorId, ruleId, log);
+        return ResponseEntity.ok(saved);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ScoreAuditLog> getLog(@PathVariable Long id) {
+        ScoreAuditLog log = scoreAuditLogService.getLog(id);
+        return ResponseEntity.ok(log);
+    }
+
+    @GetMapping("/visitor/{visitorId}")
+    public ResponseEntity<List<ScoreAuditLog>> getLogsByVisitor(@PathVariable Long visitorId) {
+        List<ScoreAuditLog> logs = scoreAuditLogService.getLogsByVisitor(visitorId);
+        return ResponseEntity.ok(logs);
     }
 }
