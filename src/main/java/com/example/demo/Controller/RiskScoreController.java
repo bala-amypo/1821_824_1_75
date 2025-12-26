@@ -18,6 +18,6 @@ public class RiskScoreController {
 
     @GetMapping
     public List<RiskScore> getAll() {
-        return service.getAllScores();
+        return service.getAll();
     }
 }

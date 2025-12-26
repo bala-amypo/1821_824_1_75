@@ -18,6 +18,6 @@ public class VisitorController {
 
     @GetMapping
     public List<Visitor> getAll() {
-        return service.getAllVisitors();
+        return service.getAll();
     }
 }
