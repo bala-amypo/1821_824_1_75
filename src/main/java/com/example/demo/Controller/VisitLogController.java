@@ -17,20 +17,15 @@ public class VisitLogController {
         this.service = service;
     }
 
-    @PostMapping("/{visitorId}")
-    public ResponseEntity<VisitLog> create(
-            @PathVariable Long visitorId,
-            @RequestBody VisitLog log) {
+    public ResponseEntity<VisitLog> create(Long visitorId, VisitLog log) {
         return ResponseEntity.ok(service.createVisitLog(visitorId, log));
     }
 
-    @GetMapping("/visitor/{visitorId}")
-    public ResponseEntity<List<VisitLog>> byVisitor(@PathVariable Long visitorId) {
-        return ResponseEntity.ok(service.getLogsByVisitor(visitorId));
+    public ResponseEntity<VisitLog> get(Long id) {
+        return ResponseEntity.ok(service.getLog(id));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VisitLog> get(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getLog(id));
+    public ResponseEntity<List<VisitLog>> listByVisitor(Long visitorId) {
+        return ResponseEntity.ok(service.getLogsByVisitor(visitorId));
     }
 }
