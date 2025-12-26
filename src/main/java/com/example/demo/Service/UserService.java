@@ -1,16 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.*;
-import org.springframework.stereotype.Service;
+import com.example.demo.entity.User;
 
-@Service
-public class UserService {
-
-    public void register(RegisterRequest request) {
-        // dummy implementation
-    }
-
-    public AuthResponse login(AuthRequest request) {
-        return new AuthResponse("dummy-jwt-token");
-    }
+public interface UserService {
+    User getByUsername(String username);
 }
