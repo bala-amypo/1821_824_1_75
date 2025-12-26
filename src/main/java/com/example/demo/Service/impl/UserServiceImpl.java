@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
             throw new BadRequestException("Invalid email or password");
         }
 
-        String token = jwtTokenProvider.generateToken(user.getEmail(), user.getRole());
+        String token = jwtTokenProvider.generateToken(user.getEmail(), user.getRoles());
         return new AuthResponse(token, user.getEmail(), user.getRoles());
     }
 
