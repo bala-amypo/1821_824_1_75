@@ -1,11 +1,11 @@
-// package com.example.demo.repository;
+package com.example.demo.repository;
 
-// import com.example.demo.entity.User;
-// import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-// public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
 
-//     User findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
 
-//     User findByEmailAndPassword(String email, String password);
-// }
+    Optional<User> findByEmail(String email);
+}
