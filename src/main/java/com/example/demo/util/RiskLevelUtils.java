@@ -1,39 +1,33 @@
 package com.example.demo.util;
 
-public class RiskLevelUtils {
+public final class RiskLevelUtils {
+
+    // Prevent instantiation
+    private RiskLevelUtils() {
+    }
 
     /**
-     * Determines the risk level based on the total score.
-     * Boundaries:
-     * 0-19   => LOW
-     * 20-49  => MEDIUM
-     * 50-79  => HIGH
-     * 80+    => CRITICAL
+     * Determines risk level based on total score.
      *
-     * @param score total risk score
-     * @return risk level as String
+     * Score mapping:
+     * 0  - 19  -> LOW
+     * 20 - 49  -> MEDIUM
+     * 50 - 79  -> HIGH
+     * 80+      -> CRITICAL
      */
     public static String determineRiskLevel(int score) {
         if (score < 0) {
-            throw new IllegalArgumentException("Score cannot be negative");
-        } else if (score < 20) {
+            throw new IllegalArgumentException("score must be non-negative");
+        }
+
+        if (score <= 19) {
             return "LOW";
-        } else if (score < 50) {
+        } else if (score <= 49) {
             return "MEDIUM";
-        } else if (score < 80) {
+        } else if (score <= 79) {
             return "HIGH";
         } else {
             return "CRITICAL";
         }
-    }
-
-    /**
-     * Ensures a numeric value is non-negative.
-     *
-     * @param value number to check
-     * @return value if >=0, else 0
-     */
-    public static int ensureNonNegative(int value) {
-        return Math.max(0, value);
     }
 }
