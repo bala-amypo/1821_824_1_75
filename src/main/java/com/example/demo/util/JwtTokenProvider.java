@@ -1,19 +1,29 @@
 package com.example.demo.security;
 
-import java.util.Set;
-import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.*;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
+@Component
 public class JwtTokenProvider {
 
-    public String createToken(Long userId, String email, Set<String> roles) {
-        return "token";
+    private final String SECRET = "secretkey";
+
+    public String generateToken(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .compact();
     }
 
-    public boolean validateToken(String token) {
-        return true;
-    }
-
-    public Claims getClaims(String token) {
-        return io.jsonwebtoken.Jwts.claims();
+    public String getUsername(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 }
