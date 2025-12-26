@@ -1,16 +1,16 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Visitor;
-import com.example.demo.service.VisitorService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.example.demo.model.*;
+import com.example.demo.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.security.access.prepost.PreAuthorize;
 
-import java.util.List;
-
+@Tag(name = "Visitor Controller")
 @RestController
 @RequestMapping("/api/visitors")
-@Tag(name = "Visitor", description = "Endpoints for managing visitors")
 public class VisitorController {
 
     private final VisitorService visitorService;
@@ -19,18 +19,20 @@ public class VisitorController {
         this.visitorService = visitorService;
     }
 
+    @PreAuthorize("hasAnyRole('STAFF','ADMIN')")
     @PostMapping
-    public ResponseEntity<Visitor> createVisitor(@RequestBody Visitor visitor) {
+    public ResponseEntity<Visitor> create(@RequestBody Visitor visitor) {
         return ResponseEntity.ok(visitorService.createVisitor(visitor));
     }
 
+    @PreAuthorize("hasAnyRole('STAFF','ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<Visitor> getVisitor(@PathVariable Long id) {
+    public ResponseEntity<Visitor> get(@PathVariable Long id) {
         return ResponseEntity.ok(visitorService.getVisitor(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Visitor>> getAllVisitors() {
+    public ResponseEntity<List<Visitor>> all() {
         return ResponseEntity.ok(visitorService.getAllVisitors());
     }
 }
