@@ -1,9 +1,10 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "visit_logs")
 public class VisitLog {
 
     @Id
@@ -12,7 +13,6 @@ public class VisitLog {
 
     private String purpose;
     private String location;
-
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
 
@@ -20,8 +20,12 @@ public class VisitLog {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-    public VisitLog() {}
+    @PrePersist
+    public void prePersist() {
+        if (this.entryTime == null) this.entryTime = LocalDateTime.now();
+    }
 
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -39,11 +43,4 @@ public class VisitLog {
 
     public Visitor getVisitor() { return visitor; }
     public void setVisitor(Visitor visitor) { this.visitor = visitor; }
-
-    @PrePersist
-    public void prePersist() {
-        if (entryTime == null) {
-            entryTime = LocalDateTime.now();
-        }
-    }
 }

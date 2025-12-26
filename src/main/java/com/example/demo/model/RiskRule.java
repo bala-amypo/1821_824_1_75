@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "risk_rules", uniqueConstraints = @UniqueConstraint(columnNames = "ruleName"))
 public class RiskRule {
 
     @Id
@@ -11,11 +12,8 @@ public class RiskRule {
 
     private String ruleName;
     private String ruleType;
-    private Integer scoreImpact;
     private Integer threshold;
-
-    // Constructors
-    public RiskRule() {}
+    private Integer scoreImpact;
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -27,9 +25,9 @@ public class RiskRule {
     public String getRuleType() { return ruleType; }
     public void setRuleType(String ruleType) { this.ruleType = ruleType; }
 
-    public Integer getScoreImpact() { return scoreImpact; }
-    public void setScoreImpact(Integer scoreImpact) { this.scoreImpact = scoreImpact; }
-
     public Integer getThreshold() { return threshold; }
     public void setThreshold(Integer threshold) { this.threshold = threshold; }
+
+    public Integer getScoreImpact() { return scoreImpact; }
+    public void setScoreImpact(Integer scoreImpact) { this.scoreImpact = scoreImpact; }
 }

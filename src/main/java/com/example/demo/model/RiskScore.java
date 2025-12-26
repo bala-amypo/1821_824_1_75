@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "risk_scores")
 public class RiskScore {
 
     @Id
@@ -13,10 +14,8 @@ public class RiskScore {
     private String riskLevel;
 
     @OneToOne
+    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
-
-    // Constructors
-    public RiskScore() {}
 
     // Getters and Setters
     public Long getId() { return id; }

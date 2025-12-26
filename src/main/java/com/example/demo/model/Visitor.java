@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "visitors")
 public class Visitor {
 
     @Id
@@ -15,8 +16,11 @@ public class Visitor {
     private String email;
     private String idProof;
 
-    // Constructors
-    public Visitor() {}
+    @OneToMany(mappedBy = "visitor", cascade = CascadeType.ALL)
+    private List<VisitLog> visitLogs;
+
+    @OneToOne(mappedBy = "visitor", cascade = CascadeType.ALL)
+    private RiskScore riskScore;
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -33,4 +37,10 @@ public class Visitor {
 
     public String getIdProof() { return idProof; }
     public void setIdProof(String idProof) { this.idProof = idProof; }
+
+    public List<VisitLog> getVisitLogs() { return visitLogs; }
+    public void setVisitLogs(List<VisitLog> visitLogs) { this.visitLogs = visitLogs; }
+
+    public RiskScore getRiskScore() { return riskScore; }
+    public void setRiskScore(RiskScore riskScore) { this.riskScore = riskScore; }
 }
