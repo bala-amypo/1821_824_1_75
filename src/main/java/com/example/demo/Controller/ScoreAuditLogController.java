@@ -1,31 +1,31 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.model.ScoreAuditLog;
-// import com.example.demo.service.ScoreAuditLogService;
-// import org.springframework.http.*;
-// import org.springframework.web.bind.annotation.*;
+import com.example.demo.model.ScoreAuditLog;
+import com.example.demo.service.ScoreAuditLogService;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
-// import java.util.List;
+import java.util.List;
 
-// @RestController
-// @RequestMapping("/api/score-logs")
-// public class ScoreAuditLogController {
+@RestController
+@RequestMapping("/api/score-logs")
+public class ScoreAuditLogController {
 
-//     private final ScoreAuditLogService service;
+    private final ScoreAuditLogService service;
 
-//     public ScoreAuditLogController(ScoreAuditLogService service) {
-//         this.service = service;
-//     }
+    public ScoreAuditLogController(ScoreAuditLogService service) {
+        this.service = service;
+    }
 
-//     public ResponseEntity<ScoreAuditLog> create(Long visitorId, Long ruleId, ScoreAuditLog log) {
-//         return ResponseEntity.ok(service.logScoreChange(visitorId, ruleId, log));
-//     }
+    public ResponseEntity<ScoreAuditLog> create(Long visitorId, Long ruleId, ScoreAuditLog log) {
+        return ResponseEntity.ok(service.logScoreChange(visitorId, ruleId, log));
+    }
 
-//     public ResponseEntity<ScoreAuditLog> get(Long id) {
-//         return ResponseEntity.ok(service.getLog(id));
-//     }
+    public ResponseEntity<ScoreAuditLog> get(Long id) {
+        return ResponseEntity.ok(service.getLog(id));
+    }
 
-//     public ResponseEntity<List<ScoreAuditLog>> logsByVisitor(Long visitorId) {
-//         return ResponseEntity.ok(service.getLogsByVisitor(visitorId));
-//     }
-// }
+    public ResponseEntity<List<ScoreAuditLog>> logsByVisitor(Long visitorId) {
+        return ResponseEntity.ok(service.getLogsByVisitor(visitorId));
+    }
+}
