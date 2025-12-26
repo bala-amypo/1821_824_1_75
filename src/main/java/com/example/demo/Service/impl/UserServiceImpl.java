@@ -44,17 +44,25 @@ public class UserServiceImpl implements UserService {
 
         String token = jwtTokenProvider.generateToken(authentication);
 
-        return new AuthResponse(token, request.getEmail());
+        User user = getByEmail(request.getEmail());
+
+        return new AuthResponse(token, user.getEmail(), user.getRoles());
     }
 
     @Override
-    public void register(RegisterRequest request) {
+    public User register(RegisterRequest request) {
 
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRoles(request.getRoles());
 
-        userRepository.save(user);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
