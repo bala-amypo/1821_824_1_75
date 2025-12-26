@@ -3,12 +3,12 @@ package com.example.demo.dto;
 import java.util.Set;
 
 public class RegisterRequest {
-
     private String email;
     private String password;
     private Set<String> roles;
 
-    public RegisterRequest() {}
+    public RegisterRequest() {
+    }
 
     public RegisterRequest(String email, String password, Set<String> roles) {
         this.email = email;
