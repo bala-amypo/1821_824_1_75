@@ -1,38 +1,34 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.RiskScore;
-import com.example.demo.repository.RiskScoreRepository;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.model.RiskScore;
+import com.example.demo.service.RiskScoreService;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("/risk-scores")
-@Tag(name = "Risk Score API", description = "Risk score calculation APIs")
-@SecurityRequirement(name = "BearerAuth")
+@RequestMapping("/api/risk-scores")
 public class RiskScoreController {
 
-    private final RiskScoreRepository riskScoreRepository;
+    private final RiskScoreService service;
 
-    public RiskScoreController(RiskScoreRepository riskScoreRepository) {
-        this.riskScoreRepository = riskScoreRepository;
+    public RiskScoreController(RiskScoreService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/evaluate/{visitorId}")
+    public ResponseEntity<RiskScore> evaluate(@PathVariable Long visitorId) {
+        return ResponseEntity.ok(service.evaluateVisitor(visitorId));
     }
 
     @GetMapping("/{visitorId}")
-    public ResponseEntity<?> getRiskScore(@PathVariable Long visitorId) {
+    public ResponseEntity<RiskScore> get(@PathVariable Long visitorId) {
+        return ResponseEntity.ok(service.getScoreForVisitor(visitorId));
+    }
 
-        Optional<RiskScore> riskScore =
-                riskScoreRepository.findByVisitorId(visitorId);
-
-        if (riskScore.isEmpty()) {
-            return ResponseEntity
-                    .status(404)
-                    .body("Risk score not found for visitorId: " + visitorId);
-        }
-
-        return ResponseEntity.ok(riskScore.get());
+    @GetMapping
+    public ResponseEntity<List<RiskScore>> all() {
+        return ResponseEntity.ok(service.getAllScores());
     }
 }
