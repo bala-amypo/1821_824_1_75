@@ -17,7 +17,7 @@ public class VisitorServiceImpl implements VisitorService {
 
     @Override
     public Visitor createVisitor(Visitor visitor) {
-        if (visitor.getPhone() == null || visitor.getPhone().isBlank()) {
+        if (visitor.getPhone() == null) {
             throw new IllegalArgumentException("phone required");
         }
         return visitorRepository.save(visitor);

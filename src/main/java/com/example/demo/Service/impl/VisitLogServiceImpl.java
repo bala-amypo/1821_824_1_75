@@ -6,6 +6,7 @@ import com.example.demo.repository.VisitLogRepository;
 import com.example.demo.repository.VisitorRepository;
 import com.example.demo.service.VisitLogService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -14,7 +15,8 @@ public class VisitLogServiceImpl implements VisitLogService {
     private final VisitLogRepository visitLogRepository;
     private final VisitorRepository visitorRepository;
 
-    public VisitLogServiceImpl(VisitLogRepository visitLogRepository, VisitorRepository visitorRepository) {
+    public VisitLogServiceImpl(VisitLogRepository visitLogRepository,
+                               VisitorRepository visitorRepository) {
         this.visitLogRepository = visitLogRepository;
         this.visitorRepository = visitorRepository;
     }
@@ -23,18 +25,10 @@ public class VisitLogServiceImpl implements VisitLogService {
     public VisitLog createVisitLog(Long visitorId, VisitLog log) {
         Visitor visitor = visitorRepository.findById(visitorId)
                 .orElseThrow(() -> new RuntimeException("Visitor not found"));
-        log.setVisitor(visitor);
-
         if (log.getExitTime() != null && log.getExitTime().isBefore(log.getEntryTime())) {
             throw new IllegalArgumentException("exitTime must be after entryTime");
         }
-        if (log.getPurpose() == null || log.getPurpose().isBlank()) {
-            throw new IllegalArgumentException("purpose required");
-        }
-        if (log.getLocation() == null || log.getLocation().isBlank()) {
-            throw new IllegalArgumentException("location required");
-        }
-
+        log.setVisitor(visitor);
         return visitLogRepository.save(log);
     }
 
@@ -46,6 +40,6 @@ public class VisitLogServiceImpl implements VisitLogService {
 
     @Override
     public List<VisitLog> getLogsByVisitor(Long visitorId) {
-        return visitLogRepository.findByVisitorSince(visitorId, java.time.LocalDateTime.MIN);
+        return visitLogRepository.findByVisitorId(visitorId);
     }
 }

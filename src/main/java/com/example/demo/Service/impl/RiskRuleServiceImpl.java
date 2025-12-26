@@ -17,23 +17,20 @@ public class RiskRuleServiceImpl implements RiskRuleService {
 
     @Override
     public RiskRule createRule(RiskRule rule) {
-        riskRuleRepository.findByRuleName(rule.getRuleName())
-                .ifPresent(r -> { throw new IllegalArgumentException("Rule name must be unique"); });
-
-        if (rule.getThreshold() != null && rule.getThreshold() < 0) rule.setThreshold(0);
-        if (rule.getScoreImpact() != null && rule.getScoreImpact() < 0) rule.setScoreImpact(0);
-
+        if (riskRuleRepository.existsByRuleName(rule.getRuleName())) {
+            throw new RuntimeException("Rule name must be unique");
+        }
         return riskRuleRepository.save(rule);
-    }
-
-    @Override
-    public List<RiskRule> getAllRules() {
-        return riskRuleRepository.findAll();
     }
 
     @Override
     public RiskRule getRule(Long id) {
         return riskRuleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("RiskRule not found"));
+    }
+
+    @Override
+    public List<RiskRule> getAllRules() {
+        return riskRuleRepository.findAll();
     }
 }
