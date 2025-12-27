@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
+   
 
     private final UserService userService;
 
